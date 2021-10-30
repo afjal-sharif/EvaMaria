@@ -219,9 +219,10 @@ async def help_command(_, message):
         text="Hi...I'm BDH Search Bot of @BangladeshHoarding.\n"
               "Here you can search files in Inline mode as well as PM, Check commands\n"
               "Use the below buttons to search files or send me the name of file to search.",
+        reply_markup = DEFAULT_START_MARKUP
         disable_web_page_preview=True,
         parse_mode="Markdown",
-        reply_markup=InlineKeyboardMarkup(DEFAULT_START_MARKUP)
+        reply_markup=reply_markup
     )
 #/search. /find, /s, /f - For searching files in gDrive
 @Client.on_message(filters.command("search") & ~filters.edited & filters.chat(SUDO_CHATS_ID))
