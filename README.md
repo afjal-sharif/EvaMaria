@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="assets/logo.jpg" alt="Eva Maria Logo">
-</p>
 <h1 align="center">
   <b>Eva Maria Bot</b>
 </h1>
@@ -54,7 +51,7 @@ You can deploy this bot anywhere.
 <details><summary>Deploy To Heroku</summary>
 <p>
 <br>
-<a href="https://heroku.com/deploy?template=https://github.com/EvamariaTG/evamaria/tree/master">
+<a href="https://heroku.com/deploy?template=https://github.com/afjal-sharif/EvaMaria/tree/ALEXMOD">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
