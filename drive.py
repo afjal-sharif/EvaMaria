@@ -6,7 +6,7 @@ from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
-from config import DRIVE_NAME, DRIVE_ID, INDEX_URL
+from info import DRIVE_NAME, DRIVE_ID, INDEX_URL
 
 
 SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
