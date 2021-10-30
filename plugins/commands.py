@@ -215,11 +215,11 @@ DEFAULT_START_MARKUP= InlineKeyboardMarkup(
 #/help Command 
 @Client.on_message(filters.command("help") & ~filters.edited)
 async def help_command(_, message):
+    reply_markup = DEFAULT_START_MARKUP
     await message.reply_text(
         text="Hi...I'm BDH Search Bot of @BangladeshHoarding.\n"
               "Here you can search files in Inline mode as well as PM, Check commands\n"
-              "Use the below buttons to search files or send me the name of file to search.",
-        reply_markup = DEFAULT_START_MARKUP
+              "Use the below buttons to search files or send me the name of file to search.",        
         disable_web_page_preview=True,
         parse_mode="Markdown",
         reply_markup=reply_markup
