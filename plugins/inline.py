@@ -1,7 +1,7 @@
 import logging
 from pyrogram import Client, emoji, filters
+from pyrogram.errors.exceptions.bad_request_400 import QueryIdInvalid
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, InlineQueryResultCachedDocument
-
 from database.ia_filterdb import get_search_results
 from utils import is_subscribed, get_size
 from info import CACHE_TIME, AUTH_USERS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION
@@ -32,7 +32,7 @@ async def answer(bot, query):
 
     offset = int(query.offset or 0)
     reply_markup = get_reply_markup(query=string)
-    files, next_offset = await get_search_results(string,
+    files, next_offset, total = await get_search_results(string,
                                                   file_type=file_type,
                                                   max_results=10,
                                                   offset=offset)
@@ -58,10 +58,9 @@ async def answer(bot, query):
                 reply_markup=reply_markup))
 
     if results:
-        switch_pm_text = f"{emoji.FILE_FOLDER} Results"
+        switch_pm_text = f"{emoji.FILE_FOLDER} Results - {total}"
         if string:
             switch_pm_text += f" for {string}"
-
         try:
             await query.answer(results=results,
                            is_personal = True,
@@ -69,6 +68,8 @@ async def answer(bot, query):
                            switch_pm_text=switch_pm_text,
                            switch_pm_parameter="start",
                            next_offset=str(next_offset))
+        except QueryIdInvalid:
+            pass
         except Exception as e:
             logging.exception(str(e))
             await query.answer(results=[], is_personal=True,
@@ -76,7 +77,6 @@ async def answer(bot, query):
                            switch_pm_text=str(e)[:63],
                            switch_pm_parameter="error")
     else:
-
         switch_pm_text = f'{emoji.CROSS_MARK} No results'
         if string:
             switch_pm_text += f' for "{string}"'
@@ -90,19 +90,7 @@ async def answer(bot, query):
 
 def get_reply_markup(query):
     buttons = [[
-        InlineKeyboardButton('🇧🇩BDH🇧🇩', url=f'https://t.me/bangladeshHoarding'),
-        InlineKeyboardButton('🔎Search Again🔎', switch_inline_query_current_chat=query)
-        ]]
+            InlineKeyboardButton('🇧🇩BDH🇧🇩', url=f'https://t.me/bangladeshHoarding'),
+            InlineKeyboardButton('🔎Search Again🔎', switch_inline_query_current_chat=query)            
+         ]]
     return InlineKeyboardMarkup(buttons)
-
-
-def get_size(size):
-    """Get size in readable format"""
-
-    units = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB"]
-    size = float(size)
-    i = 0
-    while size >= 1024.0 and i < len(units):
-        i += 1
-        size /= 1024.0
-    return "%.2f %s" % (size, units[i])
