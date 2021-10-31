@@ -4,10 +4,10 @@ Hi, I'm <a href='https://t.me/BangladeshHoarding'>BDH Search Bot</a> of <a href=
 """
     HELP_TXT = """𝙷𝙴𝚈 {}
 𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
-    ABOUT_TXT = """ℹ️ <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a> is a group Where anyone can mirror and store there favourite files/contents which are already available on the internet and user’s can access there files anytime... and this group has a global file search index so user's can search there content too...
+    ABOUT_TXT = """ℹ️ <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a> is a non-profit group Where anyone can mirror and store there favourite files/contents which are already available on the internet and user’s can access there files anytime... and this group has a global file search index so user's can search there content too...
 
 🙏 Disclaimer : Every file of <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a> is already available on Internet <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a> doesn’t rip/pirate anything. Copyright owner Please reach us at 
-📨 alexstuart789@pm.me or drop a message <a href='http://t.me/BDH_PM_bot'>BDH_PM</a> to take down ⛔️ content from group storage...
+📨 alexstuart789@pm.me or drop a message <a href='http://t.me/BDH_PM_bot'>BDH_PM</a> to take down ⛔️ content from group storage... <br> **There is no specific Owner of <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a>, all group members are the owner of <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a>**
 Thank you..."""
     SOURCE_TXT = """<b>NOTE:</b>
 - This project is a open source. 
