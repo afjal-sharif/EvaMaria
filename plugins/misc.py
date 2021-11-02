@@ -132,7 +132,7 @@ async def who_is(client, message):
             )
         await status_message.delete()
 
-@Client.on_message(filters.command(["imdb", 'search']))
+@Client.on_message(filters.command(["imdb", 'isearch']))
 async def imdb_search(client, message):
     if ' ' in message.text:
         k = await message.reply('🔎 আইএমডিবি তে খোঁজা হচ্ছে 🔍...𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐈𝐌𝐃𝐛')
