@@ -18,7 +18,7 @@ class script(object):
 - <a href=https://t.me/TeamEvamaria>Team Eva Maria</a>"""
     MANUELFILTER_TXT = """Help: <b>Filters</b>
 
-- Filter is the feature were users can set automated replies for a particular keyword and tessa will respond whenever a keyword is found the message
+- Filter is the feature were users can set automated replies for a particular keyword and EvaMaria will respond whenever a keyword is found the message
 
 <b>NOTE:</b>
 1. eva maria should have admin privillage.
@@ -67,7 +67,7 @@ class script(object):
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of tessa
+these are the extra features of Eva Maria
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specifed user.</code>
@@ -82,6 +82,7 @@ This module only works for my admins
 <b>Commands and Usage:</b>
 • /logs - <code>to get the rescent errors</code>
 • /stats - <code>to get status of files in db.</code>
+• /delete - <code>to delete a specific file from db.</code>
 • /users - <code>to get list of my users and ids.</code>
 • /chats - <code>to get list of the my chats and ids </code>
 • /leave  - <code>to leave from a chat.</code>
