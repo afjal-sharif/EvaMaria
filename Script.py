@@ -3,11 +3,36 @@ class script(object):
 Hi, I'm <a href='https://t.me/BangladeshHoarding'>BDH Search Bot</a> of <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a>. I can search files in Inline mode as well as PM, Use the below buttons to search files or send me the name of file to search.
 """
     HELP_TXT = """𝙷𝙴𝚈 {}
-𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂."""
+𝙷𝙴𝚁𝙴 𝙸𝚂 𝚃𝙷𝙴 𝙷𝙴𝙻𝙿 𝙵𝙾𝚁 𝙼𝚈 𝙲𝙾𝙼𝙼𝙰𝙽𝙳𝚂.
+
+• /logs - to get the rescent errors
+• /stats - to get status of files in db.
+* /filter - add manual filters
+* /filters - view filters
+* /connect - connect to PM.
+* /disconnect - disconnect from PM
+* /del - delete a filter
+* /delall - delete all filters
+* /deleteall - delete all index(autofilter)
+* /delete - delete a specific file from index.
+* /info - get user info
+* /id - get tg ids.
+* /imdb - fetch info from imdb.
+• /users - to get list of my users and ids.
+• /chats - to get list of the my chats and ids 
+• /index  - to add files from a channel
+• /leave  - to leave from a chat.
+• /disable  -  do disable a chat.
+* /enable - re-enable chat.
+• /ban  - to ban a user.
+• /unban  - to unban a user.
+• /channel - to get list of total connected channels
+• /broadcast - to broadcast a message to all BDH users"""
     ABOUT_TXT = """ℹ️ <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a> is a non-profit group Where anyone can mirror and store there favourite files/contents which are already available on the internet and user’s can access there files anytime... and this group has a global file search index so user's can search there content too...
 
 🙏 Disclaimer : Every file of <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a> is already available on Internet <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a> doesn’t rip/pirate anything. Copyright owner Please drop a message <a href='http://t.me/BDH_PM_bot'>BDH_PM</a> to take down ⛔️ content from group storage... <br> **There is no specific Owner of <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a>, all group members are the owner of <a href='https://t.me/BangladeshHoarding'>🇧🇩★ 𝘉𝘢𝘯𝘨𝘭𝘢𝘥𝘦𝘴𝘩 𝘏𝘰𝘢𝘳𝘥𝘪𝘯𝘨 ★🇧🇩</a>***
-Thank you...<br>BDH 🇧🇩"""
+Thank you...
+BDH 🇧🇩"""
     SOURCE_TXT = """<b>NOTE:</b>
 - This project is a open source. 
 """
@@ -43,7 +68,7 @@ Thank you...<br>BDH 🇧🇩"""
 
 <b>NOTE:</b>
 1. Make me the admin of your channel if it's private.
-2. make sure that your channel does not contains cam rip, porn and fake files.
+2. make sure that your channel does not contains camrip, porn and fake files.
 3. Forward the last message to me with quotes.
  I'll add all the files in that channel to my db."""
     CONNECTION_TXT = """Help: <b>Connections</b>
@@ -62,7 +87,7 @@ Thank you...<br>BDH 🇧🇩"""
     EXTRAMOD_TXT = """Help: <b>Extra Modules</b>
 
 <b>NOTE:</b>
-these are the extra features of tessa
+these are the extra features of BDH Search Bot
 
 <b>Commands and Usage:</b>
 • /id - <code>get id of a specifed user.</code>
