@@ -1,10 +1,13 @@
 import os
-from pyrogram import Client, filters
+import aiohttp
+import json
+from pyrogram import Client, filters, emoji
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
+from info import API_BASE_URL
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
@@ -172,5 +175,417 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
         await query.message.edit(f"IMDb Data:\n\n🏷 Title:<a href={imdb['url']}>{imdb.get('title')}</a>\n🎭 Genres: {imdb.get('genres')}\n📆 Year:<a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n🌟 Rating: <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n🖋 StoryLine: <code>{imdb.get('plot')} </code>", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
     await query.answer()
         
+#Torrent Search 
+@Client.on_message(filters.command(['thelp']))
+async def thelp(_, message):
+    await message.reply_text("/t query, To Search For Torrents")
 
-        
+m = None
+i = 0
+a = None
+query = None
+
+
+@Client.on_message(filters.command(["t"]))
+async def t(_, message):
+    global m
+    global i
+    global a
+    global query
+    try:
+        await message.delete()
+    except:
+        pass
+    if len(message.command) < 2:
+        await message.reply_text("Usage: /torrent query")
+        return
+    query = message.text.split(None, 1)[1].replace(" ", "%20")
+    m = await message.reply_text("Searching")
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{API_BASE_URL}all/{query}") \
+                    as resp:
+                a = json.loads(await resp.text())
+    except:
+        await m.edit("Found Nothing.")
+        return
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("next"))
+async def callback_query_next(_, message):
+    global i
+    global m
+    global a
+    global query
+    i += 1
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("previous"))
+async def callback_query_previous(_, message):
+    global i
+    global m
+    global a
+    global query
+    i -= 1
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("delete"))
+async def callback_query_delete(_, message):
+    global m
+    global i
+    global a
+    global query
+    await m.delete()
+    m = None
+    i = 0
+    a = None
+    query = None
+
+#RARBG SEARCH
+@Client.on_message(filters.command(["r"]))
+async def r(_, message):
+    global m
+    global i
+    global a
+    global query
+    try:
+        await message.delete()
+    except:
+        pass
+    if len(message.command) < 2:
+        await message.reply_text("Usage: /r query")
+        return
+    query = message.text.split(None, 1)[1].replace(" ", "%20")
+    m = await message.reply_text("Searching")
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{API_BASE_URL}rarbg/{query}") \
+                    as resp:
+                a = json.loads(await resp.text())
+    except:
+        await m.edit("Found Nothing.")
+        return
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']} ||"
+        f"● ক্যাটাগরি: {a[i]['Category']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬❝ 🄱🄳🄷-🅁🄰🅁🄱🄶 ❞▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("next"))
+async def callback_query_next(_, message):
+    global i
+    global m
+    global a
+    global query
+    i += 1
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']} ||"
+        f"● ক্যাটাগরি: {a[i]['Category']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬❝ 🄱🄳🄷-🅁🄰🅁🄱🄶 ❞▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("previous"))
+async def callback_query_previous(_, message):
+    global i
+    global m
+    global a
+    global query
+    i -= 1
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']} ||"
+        f"● ক্যাটাগরি: {a[i]['Category']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬❝ 🄱🄳🄷-🅁🄰🅁🄱🄶 ❞▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("delete"))
+async def callback_query_delete(_, message):
+    global m
+    global i
+    global a
+    global query
+    await m.delete()
+    m = None
+    i = 0
+    a = None
+    query = None      
+    
+#1337x SEARCH
+@Client.on_message(filters.command(["13"]))
+async def 13(_, message):
+    global m
+    global i
+    global a
+    global query
+    try:
+        await message.delete()
+    except:
+        pass
+    if len(message.command) < 2:
+        await message.reply_text("Usage: /r query")
+        return
+    query = message.text.split(None, 1)[1].replace(" ", "%20")
+    m = await message.reply_text("Searching")
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(f"{API_BASE_URL}1337x/{query}") \
+                    as resp:
+                a = json.loads(await resp.text())
+    except:
+        await m.edit("Found Nothing.")
+        return
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']} ||"
+        f"● ক্যাটাগরি: {a[i]['Category']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬❝ 🄱🄳🄷-¹³³⁷ˣ ❞▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("next"))
+async def callback_query_next(_, message):
+    global i
+    global m
+    global a
+    global query
+    i += 1
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']} ||"
+        f"● ক্যাটাগরি: {a[i]['Category']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬❝ 🄱🄳🄷-¹³³⁷ˣ ❞▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("previous"))
+async def callback_query_previous(_, message):
+    global i
+    global m
+    global a
+    global query
+    i -= 1
+    result = (
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂- {a[i]['Name']}\n"        
+        f"╟● 📀সাইজ: {a[i]['Size']} ||"
+        f"● ক্যাটাগরি: {a[i]['Category']}\n"
+        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
+        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
+        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
+        f"@BangladeshHoarding \n"
+        f"╠▬▬▬❝ 🄱🄳🄷-¹³³⁷ˣ ❞▬▬▬╣"
+    )
+    await m.edit(
+        result,
+        reply_markup=InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
+                                         callback_data="delete")
+                ]
+            ]
+        ),
+        parse_mode="markdown",
+    )
+
+
+@Client.on_callback_query(filters.regex("delete"))
+async def callback_query_delete(_, message):
+    global m
+    global i
+    global a
+    global query
+    await m.delete()
+    m = None
+    i = 0
+    a = None
+    query = None
