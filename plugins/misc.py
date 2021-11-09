@@ -138,11 +138,11 @@ async def who_is(client, message):
 @Client.on_message(filters.command(["imdb", 'isearch']))
 async def imdb_search(client, message):
     if ' ' in message.text:
-        k = await message.reply('🔎 আইএমডিবি তে খোঁজা হচ্ছে 🔍...𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐈𝐌𝐃𝐛')
+        k = await message.reply('🔎 আইএমডিবি তে খোঁজা হচ্ছে .. \n 🔍...𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐈𝐌𝐃𝐛')
         r, title = message.text.split(None, 1)
         movies = await get_poster(title, bulk=True)
         if not movies:
-            return await message.reply("❌ কিছু পাওয়া যায়নি ❌ 𝐍𝐨 𝐫𝐞𝐬𝐮𝐥𝐭𝐬 𝐅𝐨𝐮𝐧𝐝 ❌")
+            return await message.reply("❌ কিছু পাওয়া যায়নি ❌\n 𝐍𝐨 𝐫𝐞𝐬𝐮𝐥𝐭𝐬 𝐅𝐨𝐮𝐧𝐝 ❌")
         btn = [
             [
                 InlineKeyboardButton(
@@ -154,7 +154,7 @@ async def imdb_search(client, message):
         ]
         await k.edit('আইএমডিবি হতে যা পেলুম... 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐰𝐡𝐚𝐭 𝐢 𝐟𝐨𝐮𝐧𝐝 𝐨𝐧 𝐈𝐌𝐃𝐛', reply_markup=InlineKeyboardMarkup(btn))
     else:
-        await message.reply('মুভি/ সিরিজ এর নাম দাও...। 𝐆𝐢𝐯𝐞 𝐦𝐞 𝐚 𝐦𝐨𝐯𝐢𝐞 / 𝐒𝐞𝐫𝐢𝐞𝐬 𝐍𝐚𝐦𝐞')
+        await message.reply('মুভি/ সিরিজ এর নাম দিন...\n । 𝐆𝐢𝐯𝐞 𝐦𝐞 𝐚 𝐦𝐨𝐯𝐢𝐞 / 𝐒𝐞𝐫𝐢𝐞𝐬 𝐍𝐚𝐦𝐞')
 
 @Client.on_callback_query(filters.regex('^imdb'))
 async def imdb_callback(bot: Client, query: CallbackQuery):
@@ -224,10 +224,11 @@ async def t(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -257,13 +258,11 @@ async def callback_query_next(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
-
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -293,12 +292,11 @@ async def callback_query_previous(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -358,10 +356,11 @@ async def r(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -392,13 +391,11 @@ async def callback_query_next(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
-
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -429,12 +426,11 @@ async def callback_query_previous(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -466,7 +462,7 @@ async def onethree(_, message):
     except:
         pass
     if len(message.command) < 2:
-        await message.reply_text("Usage: /r query")
+        await message.reply_text("Usage: /13 query")
         return
     query = message.text.split(None, 1)[1].replace(" ", "%20")
     m = await message.reply_text("Searching")
@@ -494,10 +490,11 @@ async def onethree(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -528,13 +525,11 @@ async def callback_query_next(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
-
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
@@ -565,12 +560,11 @@ async def callback_query_previous(_, message):
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} পূর্ববর্তী",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"❌{emoji.CROSS_MARK}",
-                                         callback_data="delete")
+                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
+                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
+                ],
+                [
+                    InlineKeyboardButton(f"❌", callback_data="delete")
                 ]
             ]
         ),
