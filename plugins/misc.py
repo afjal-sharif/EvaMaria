@@ -456,7 +456,7 @@ async def callback_query_delete(_, message):
     
 #1337x SEARCH
 @Client.on_message(filters.command(["13"]))
-async def 13(_, message):
+async def onethree(_, message):
     global m
     global i
     global a
