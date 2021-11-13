@@ -152,7 +152,7 @@ async def imdb_search(client, message):
             ]
             for movie in movies
         ]
-        await k.edit('আইএমডিবি হতে যা পেলুম... 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐰𝐡𝐚𝐭 𝐢 𝐟𝐨𝐮𝐧𝐝 𝐨𝐧 𝐈𝐌𝐃𝐛', reply_markup=InlineKeyboardMarkup(btn))
+        await k.edit('আইএমডিবি হতে যা পেলুম... \n 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐰𝐡𝐚𝐭 𝐢 𝐟𝐨𝐮𝐧𝐝 𝐨𝐧 𝐈𝐌𝐃𝐛', reply_markup=InlineKeyboardMarkup(btn))
     else:
         await message.reply('মুভি/ সিরিজ এর নাম দিন...\n । 𝐆𝐢𝐯𝐞 𝐦𝐞 𝐚 𝐦𝐨𝐯𝐢𝐞 / 𝐒𝐞𝐫𝐢𝐞𝐬 𝐍𝐚𝐦𝐞')
 
@@ -178,7 +178,7 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
 #Torrent Search 
 @Client.on_message(filters.command(['thelp']))
 async def thelp(_, message):
-    await message.reply_text("/t query, To Search For Torrents")
+    await message.reply_text("টরেন্ট সার্চ করতে এই কমান্ড ব্যাবহার করুন...\n /t [File name] \n /m [File name]")
 
 m = None
 i = 0
@@ -186,7 +186,7 @@ a = None
 query = None
 
 
-@Client.on_message(filters.command(["t"]))
+@Client.on_message(filters.command(["t", "m"]))
 async def t(_, message):
     global m
     global i
@@ -197,20 +197,20 @@ async def t(_, message):
     except:
         pass
     if len(message.command) < 2:
-        await message.reply_text("Usage: /torrent query")
+        await message.reply_text("টরেন্ট সার্চ করতে এই কমান্ড ব্যাবহার করুন...\n /t [File name] \n /m [File name]")
         return
     query = message.text.split(None, 1)[1].replace(" ", "%20")
-    m = await message.reply_text("Searching")
+    m = await message.reply_text("🔎 টরেন্ট'টি খোঁজা হচ্ছে 🔎...অপেক্ষা করুন 🙏")
     try:
         async with aiohttp.ClientSession() as session:
             async with session.get(f"{API_BASE_URL}all/{query}") \
                     as resp:
                 a = json.loads(await resp.text())
     except:
-        await m.edit("Found Nothing.")
+        await m.edit("দুঃখিত 😐, কোন টরেন্ট পাওয়া যায়নি, অথবা আপনি ভুল নামে খুঁজছেন..😐")
         return
     result = (
-        f"**Page - {i+1}**\n\n"
+        f"**পেইজ - {i+1}**\n\n"
         f"╔● 📂- {a[i]['Name']}\n"        
         f"╟● 📀সাইজ: {a[i]['Size']}\n"
         f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
@@ -244,7 +244,7 @@ async def callback_query_next(_, message):
     global query
     i += 1
     result = (
-        f"**Page - {i+1}**\n\n"
+        f"**পেইজ - {i+1}**\n\n"
         f"╔● 📂- {a[i]['Name']}\n"        
         f"╟● 📀সাইজ: {a[i]['Size']}\n"
         f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
@@ -278,7 +278,7 @@ async def callback_query_previous(_, message):
     global query
     i -= 1
     result = (
-        f"**Page - {i+1}**\n\n"
+        f"**পেইজ - {i+1}**\n\n"
         f"╔● 📂- {a[i]['Name']}\n"        
         f"╟● 📀সাইজ: {a[i]['Size']}\n"
         f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
@@ -286,274 +286,6 @@ async def callback_query_previous(_, message):
         f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
         f"@BangladeshHoarding \n"
         f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
-
-
-@Client.on_callback_query(filters.regex("delete"))
-async def callback_query_delete(_, message):
-    global m
-    global i
-    global a
-    global query
-    await m.delete()
-    m = None
-    i = 0
-    a = None
-    query = None
-
-#RARBG SEARCH
-@Client.on_message(filters.command(["r"]))
-async def r(_, message):
-    global m
-    global i
-    global a
-    global query
-    try:
-        await message.delete()
-    except:
-        pass
-    if len(message.command) < 2:
-        await message.reply_text("Usage: /r query")
-        return
-    query = message.text.split(None, 1)[1].replace(" ", "%20")
-    m = await message.reply_text("Searching")
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f"{API_BASE_URL}rarbg/{query}") \
-                    as resp:
-                a = json.loads(await resp.text())
-    except:
-        await m.edit("Found Nothing.")
-        return
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']} ||"
-        f"● ক্যাটাগরি: {a[i]['Category']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬❝ 🄱🄳🄷-🅁🄰🅁🄱🄶 ❞▬▬▬╣"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
-
-
-@Client.on_callback_query(filters.regex("next"))
-async def callback_query_next(_, message):
-    global i
-    global m
-    global a
-    global query
-    i += 1
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']} ||"
-        f"● ক্যাটাগরি: {a[i]['Category']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬❝ 🄱🄳🄷-🅁🄰🅁🄱🄶 ❞▬▬▬╣"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
-
-
-@Client.on_callback_query(filters.regex("previous"))
-async def callback_query_previous(_, message):
-    global i
-    global m
-    global a
-    global query
-    i -= 1
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']} ||"
-        f"● ক্যাটাগরি: {a[i]['Category']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬❝ 🄱🄳🄷-🅁🄰🅁🄱🄶 ❞▬▬▬╣"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
-
-
-@Client.on_callback_query(filters.regex("delete"))
-async def callback_query_delete(_, message):
-    global m
-    global i
-    global a
-    global query
-    await m.delete()
-    m = None
-    i = 0
-    a = None
-    query = None      
-    
-#1337x SEARCH
-@Client.on_message(filters.command(["13"]))
-async def onethree(_, message):
-    global m
-    global i
-    global a
-    global query
-    try:
-        await message.delete()
-    except:
-        pass
-    if len(message.command) < 2:
-        await message.reply_text("Usage: /13 query")
-        return
-    query = message.text.split(None, 1)[1].replace(" ", "%20")
-    m = await message.reply_text("Searching")
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f"{API_BASE_URL}1337x/{query}") \
-                    as resp:
-                a = json.loads(await resp.text())
-    except:
-        await m.edit("Found Nothing.")
-        return
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']} ||"
-        f"● ক্যাটাগরি: {a[i]['Category']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬❝ 🄱🄳🄷-¹³³⁷ˣ ❞▬▬▬╣"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
-
-
-@Client.on_callback_query(filters.regex("next"))
-async def callback_query_next(_, message):
-    global i
-    global m
-    global a
-    global query
-    i += 1
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']} ||"
-        f"● ক্যাটাগরি: {a[i]['Category']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬❝ 🄱🄳🄷-¹³³⁷ˣ ❞▬▬▬╣"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
-
-
-@Client.on_callback_query(filters.regex("previous"))
-async def callback_query_previous(_, message):
-    global i
-    global m
-    global a
-    global query
-    i -= 1
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']} ||"
-        f"● ক্যাটাগরি: {a[i]['Category']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: <code>`{a[i]['Magnet']}`</code>\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬❝ 🄱🄳🄷-¹³³⁷ˣ ❞▬▬▬╣"
     )
     await m.edit(
         result,
