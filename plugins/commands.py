@@ -229,10 +229,10 @@ async def help_command(_, message):
 async def search(_, message):
     global i, m, data
     if len(message.command) < 2:
-      await message.reply_text('ফাইল খুঁজতে নিচের কমান্ড গুলো ব্যবহার করুন \n /search [FileName] \n /find [FileName] \n /s [FileName] \n /f [FileName] \n\n এইভাবে খুজুনঃ /s Avenger')
+      await message.reply_text('ফাইল খুঁজতে নিচের কমান্ড গুলো ব্যবহার করুন \n /search [FileName] \n /find [FileName] \n /s [FileName] \n /f [FileName] \n\n এইভাবে খুঁজুনঃ /s Avenger')
       return
     query = message.text.split(' ',maxsplit=1)[1]
-    m = await message.reply_text("**🔎 ফাইলটি খোঁজা হচ্ছে 🔎..অপেক্ষা করুন 🙏.. \n 💚@BangladeshHoarding💚**")
+    m = await message.reply_text("**🔎 ফাইলটি খোঁজা হচ্ছে 🔎..অপেক্ষা করুন 🙏.. \n\n 💚@BangladeshHoarding💚**")
     data = drive.drive_list(query)
     
     results = len(data)
@@ -240,7 +240,7 @@ async def search(_, message):
     i = i + RESULTS_COUNT
 
     if results == 0:
-        await m.edit(text="দুঃখিত 😐, কোন ফাইল পাওয়া যায়নি, অথবা আপনি ভুল নামে খুঁজছেন... @imdb বট হতে সঠিক নাম জেনে নিন । \n 💚@BangladeshHoarding💚")
+        await m.edit(text="দুঃখিত 😐, কোন ফাইল পাওয়া যায়নি, অথবা আপনি ভুল নামে খুঁজছেন... @imdb বট হতে সঠিক নাম জেনে নিন । \n\n 💚@BangladeshHoarding💚")
         return
 
     text = f"**🔎 𝐓𝐨𝐭𝐚𝐥 𝐑𝐞𝐬𝐮𝐥𝐭𝐬:** __{results}__ \n"
