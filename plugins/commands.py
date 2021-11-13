@@ -229,7 +229,7 @@ async def help_command(_, message):
 async def search(_, message):
     global i, m, data
     if len(message.command) < 2:
-      await message.reply_text('ফাইল খুঁজতে নিচের কমান্ড গুলো ব্যবহার করুন \n /search [FileName] \n /find [FileName] \n /s [FileName] \n /f [FileName] \n এভাবেঃ /s Avenger')
+      await message.reply_text('ফাইল খুঁজতে নিচের কমান্ড গুলো ব্যবহার করুন \n /search [FileName] \n /find [FileName] \n /s [FileName] \n /f [FileName] \n\n এইভাবে খুজুনঃ /s Avenger')
       return
     query = message.text.split(' ',maxsplit=1)[1]
     m = await message.reply_text("**🔎 ফাইলটি খোঁজা হচ্ছে 🔎..অপেক্ষা করুন 🙏.. \n 💚@BangladeshHoarding💚**")
