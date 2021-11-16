@@ -1,17 +1,13 @@
 import os
 import aiohttp
 import json
-from aiohttp import ClientSession
 from pyrogram import Client, filters, emoji
 from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
 from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InputMediaPhoto, InputMediaVideo
-from Python_ARQ import ARQ 
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
 from info import ARQ_API_BASE_URL, ARQ_API_KEY
-from asyncio import get_running_loop
-from wget import download
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
