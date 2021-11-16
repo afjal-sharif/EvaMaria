@@ -218,8 +218,8 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
         
 #Torrent Search 
 @Client.on_message(filters.command(['thelp']))
-async def thelp(_, message):
-    await message.reply_text("টরেন্ট সার্চ করতে এই কমান্ড ব্যাবহার করুন...\n /t [File name] \n /m [File name]")
+async def help(_, message):
+    await message.reply_text("টরেন্ট সার্চ করতে এই কমান্ড ব্যাবহার করুন...\n /t [File name] \n /m [File name]"")
 
 m = None
 i = 0
@@ -228,7 +228,7 @@ query = None
 
 
 @Client.on_message(filters.command(["t", "m"]))
-async def t(_, message):
+async def torrent(_, message):
     global m
     global i
     global a
@@ -250,27 +250,24 @@ async def t(_, message):
     except:
         await m.edit("দুঃখিত 😐, কোন টরেন্ট পাওয়া যায়নি, অথবা আপনি ভুল নামে খুঁজছেন..😐")
         return
-    result = (        
+    result = (
         f"**Page - {i+1}**\n\n"
-        f"╔● 📂 {a[i]['name']}\n"
-        f"╟● আপলোড: {a[i]['uploaded']}\n"
-        f"╟● 📀সাইজ: {a[i]['size']}\n"
-        f"╟● 🔻লীচার: {a[i]['leechs']} "
-        f"●🔺সীডার: {a[i]['seeds']}\n"
-        f"╚● 🧲ম্যাগনেট: `{a[i]['magnet']}`\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
+        f"Name: {a[i]['name']}\n"
+        f"Upload: {a[i]['uploaded']}\n"
+        f"Size: {a[i]['size']}\n"
+        f"Leechers: {a[i]['leechs']} "
+        f"seeders: {a[i]['seeds']}\n"
+        f"Magnet: `{a[i]['magnet']}`\n\n\n"
     )
     await m.edit(
         result,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
+                    InlineKeyboardButton(f"Next {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"Delete {emoji.CROSS_MARK}",
+                                         callback_data="delete")
                 ]
             ]
         ),
@@ -285,27 +282,27 @@ async def callback_query_next(_, message):
     global a
     global query
     i += 1
-    result = (        
+    result = (
         f"**Page - {i+1}**\n\n"
-        f"╔● 📂 {a[i]['name']}\n"
-        f"╟● আপলোড: {a[i]['uploaded']}\n"
-        f"╟● 📀সাইজ: {a[i]['size']}\n"
-        f"╟● 🔻লীচার: {a[i]['leechs']} "
-        f"●🔺সীডার: {a[i]['seeds']}\n"
-        f"╚● 🧲ম্যাগনেট: `{a[i]['magnet']}`\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
+        f"Name: {a[i]['name']}\n"
+        f"Upload: {a[i]['uploaded']}\n"
+        f"Size: {a[i]['size']}\n"
+        f"Leechers: {a[i]['leechs']} "
+        f"seeders: {a[i]['seeds']}\n"
+        f"Magnet: `{a[i]['magnet']}`\n\n\n"
     )
     await m.edit(
         result,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} Previous",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"Next {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"Delete {emoji.CROSS_MARK}",
+                                         callback_data="delete")
+
                 ]
             ]
         ),
@@ -320,27 +317,26 @@ async def callback_query_previous(_, message):
     global a
     global query
     i -= 1
-    result = (        
+    result = (
         f"**Page - {i+1}**\n\n"
-        f"╔● 📂 {a[i]['name']}\n"
-        f"╟● আপলোড: {a[i]['uploaded']}\n"
-        f"╟● 📀সাইজ: {a[i]['size']}\n"
-        f"╟● 🔻লীচার: {a[i]['leechs']} "
-        f"●🔺সীডার: {a[i]['seeds']}\n"
-        f"╚● 🧲ম্যাগনেট: `{a[i]['magnet']}`\n\n"
-        f"@BangladeshHoarding \n"
-        f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
+        f"Name: {a[i]['name']}\n"
+        f"Upload: {a[i]['uploaded']}\n"
+        f"Size: {a[i]['size']}\n"
+        f"Leechers: {a[i]['leechs']} "
+        f"seeders: {a[i]['seeds']}\n"
+        f"Magnet: `{a[i]['magnet']}`\n\n\n"
     )
     await m.edit(
         result,
         reply_markup=InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton(f"⏮️ পূর্ববর্তী", callback_data="previous"),
-                    InlineKeyboardButton(f"পরবর্তী ⏭️", callback_data="next")
-                ],
-                [
-                    InlineKeyboardButton(f"❌", callback_data="delete")
+                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} Previous",
+                                         callback_data="previous"),
+                    InlineKeyboardButton(f"Next {emoji.RIGHT_ARROW}",
+                                         callback_data="next"),
+                    InlineKeyboardButton(f"Delete {emoji.CROSS_MARK}",
+                                         callback_data="delete")
                 ]
             ]
         ),
