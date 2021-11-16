@@ -384,7 +384,7 @@ async def time_to_seconds(time):
 
 # Help-------------------------------------------------------------------------
 @Client.on_message(
-    filters.command("help") & ~filters.edited
+    filters.command("phelp") & ~filters.edited
 )
 async def help(_, message):
     await message.reply_text(
