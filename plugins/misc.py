@@ -396,7 +396,7 @@ To Search in PHub just simply Type something"""
     
 # Let's Go----------------------------------------------------------------------
 @Client.on_message(
-    filters.private & ~filters.edited & ~filters.command("help") & ~filters.command("start") & ~filters.command("repo")
+    filters.private & ~filters.edited & ~filters.command("help")
     )
 async def sarch(_,message):
     try:
