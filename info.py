@@ -32,7 +32,7 @@ SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'TeamEvamaria')
 
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
 #Torrent Search
-API_BASE_URL =environ.get('API_BASE_URL', 'https://torrents-api.ryukme.repl.co/api/')
+ARQ_API_BASE_URL =environ.get('API_BASE_URL', 'https://thearq.tech/')
 
 # GDrive Search Config
 RESULTS_COUNT = 4  # NOTE Nuber of results to show, 4 is better
