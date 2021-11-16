@@ -7,7 +7,7 @@ from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from info import API_BASE_URL
+from info import ARQ_API_BASE_URL
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
