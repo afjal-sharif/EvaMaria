@@ -34,7 +34,7 @@ CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
 
 #ARQ API Search
 ARQ_API_BASE_URL = environ.get('ARQ_API_BASE_URL', 'https://thearq.tech/')
-ARQ_API_KEY = environ.get('ARQ_API_KEY', 'XEOVLE-RPVIDB-NXTLJD-RRXHQR-ARQ'])
+ARQ_API_KEY = environ.get('ARQ_API_KEY', 'XEOVLE-RPVIDB-NXTLJD-RRXHQR-ARQ')
 
 # GDrive Search Config
 RESULTS_COUNT = 4  # NOTE Nuber of results to show, 4 is better
