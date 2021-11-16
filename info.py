@@ -25,14 +25,16 @@ AUTH_GROUPS = [int(admin) for admin in environ.get("AUTH_GROUPS", "").split()]
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "")
-DATABASE_NAME = environ.get('DATABASE_NAME', "Rajappan")
+DATABASE_NAME = environ.get('DATABASE_NAME', "BDH")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
 SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'TeamEvamaria')
 
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
-#Torrent Search
-ARQ_API_BASE_URL =environ.get('API_BASE_URL', 'https://thearq.tech/')
+
+#ARQ API Search
+ARQ_API_BASE_URL = environ.get('ARQ_API_BASE_URL', 'https://thearq.tech/')
+ARQ_API_KEY = environ.get('ARQ_API_KEY', 'XEOVLE-RPVIDB-NXTLJD-RRXHQR-ARQ'])
 
 # GDrive Search Config
 RESULTS_COUNT = 4  # NOTE Nuber of results to show, 4 is better
