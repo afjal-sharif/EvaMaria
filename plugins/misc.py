@@ -174,6 +174,46 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
     else:
         await query.message.edit(f"IMDb Data:\n\n🏷 <a href={imdb['url']}>{imdb.get('title')}</a>\n\n<b>🎭 Genres:</b> {imdb.get('genres')}\n<b>📆 Year:</b> <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n<b>🌟 Rating:</b>  <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n\n<i><b>🖋 StoryLine:</b> {imdb.get('plot')} </i>", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
     await query.answer(b)
+    
+@Client.on_message(filters.command(["post", 'p']))
+async def imdb_search(client, message):
+    if ' ' in message.text:
+        k = await message.reply('🔎 আইএমডিবি তে খোঁজা হচ্ছে .. \n 🔍...𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐈𝐌𝐃𝐛')
+        r, title = message.text.split(None, 1)
+        movies = await get_poster(title, bulk=True)
+        if not movies:
+            return await message.reply("❌ কিছু পাওয়া যায়নি ❌\n 𝐍𝐨 𝐫𝐞𝐬𝐮𝐥𝐭𝐬 𝐅𝐨𝐮𝐧𝐝 ❌")
+        btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{movie.get('title')} - {movie.get('year')}",
+                    callback_data=f"post#{movie.movieID}",
+                )
+            ]
+            for movie in movies
+        ]
+        await k.edit('আইএমডিবি হতে যা পেলুম... \n 𝐇𝐞𝐫𝐞 𝐢𝐬 𝐰𝐡𝐚𝐭 𝐢 𝐟𝐨𝐮𝐧𝐝 𝐨𝐧 𝐈𝐌𝐃𝐛', reply_markup=InlineKeyboardMarkup(btn))
+    else:
+        await message.reply('পোস্ট টেম্পলেট পেতে মুভি/ সিরিজ এর নাম দিন...\n । 𝐆𝐢𝐯𝐞 𝐦𝐞 𝐚 𝐦𝐨𝐯𝐢𝐞 / 𝐒𝐞𝐫𝐢𝐞𝐬 𝐍𝐚𝐦𝐞 To get BDH post template')
+
+@Client.on_callback_query(filters.regex('^post'))
+async def imdb_callback(bot: Client, query: CallbackQuery):
+    i, movie = query.data.split('#')
+    imdb = await get_poster(query=movie, id=True)
+    btn = [
+            [
+                InlineKeyboardButton(
+                    text=f"{imdb.get('title')} - {imdb.get('year')}",
+                    url=imdb['url'],
+                )
+            ]
+        ]
+    if imdb.get('poster'):
+        await query.message.reply_photo(photo=imdb['poster'], caption=f"IMDb Data:\n\n🏷 <a href={imdb['url']}>{imdb.get('title')}</a>\n\n<b>🎭 Genres:</b> {imdb.get('genres')}\n<b>📆 Year:</b><a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n<b>🌟 Rating:</b> <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n\n<i><b>🖋 StoryLine:</b> {imdb.get('plot')}</i>\n\n▬▬▬ ❝ 🄻🄸🄽🄺🅂 ❞ ▬▬▬\n\n\n\n▬▬▬▬ ❝ 🄱🄳🄷 ❞ ▬▬▬▬\n\n<a href="https://t.me/BangladeshHoarding">🚀 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰</a> | <a href="https://t.me/BDH_PM_bot"> 💬 𝐈𝐧𝐛𝐨𝐱 </a> | <a href="https://t.me/bangladeshhoarding/5">🙏 𝐃𝐢𝐬𝐜𝐥𝐚𝐢𝐦𝐞𝐫</a>", reply_markup=InlineKeyboardMarkup(btn))
+        await query.message.delete()
+    else:
+        await query.message.edit(f"IMDb Data:\n\n🏷 <a href={imdb['url']}>{imdb.get('title')}</a>\n\n<b>🎭 Genres:</b> {imdb.get('genres')}\n<b>📆 Year:</b> <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n<b>🌟 Rating:</b>  <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n\n<i><b>🖋 StoryLine:</b> {imdb.get('plot')} </i>\n\n▬▬▬ ❝ 🄻🄸🄽🄺🅂 ❞ ▬▬▬\n\n\n\n▬▬▬▬ ❝ 🄱🄳🄷 ❞ ▬▬▬▬\n\n<a href="https://t.me/BangladeshHoarding">🚀 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰</a> | <a href="https://t.me/BDH_PM_bot"> 💬 𝐈𝐧𝐛𝐨𝐱 </a> | <a href="https://t.me/bangladeshhoarding/5">🙏 𝐃𝐢𝐬𝐜𝐥𝐚𝐢𝐦𝐞𝐫</a>", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
+    await query.answer(b)
         
 #Torrent Search 
 @Client.on_message(filters.command(['thelp']))
@@ -203,18 +243,20 @@ async def t(_, message):
     m = await message.reply_text("🔎 টরেন্ট'টি খোঁজা হচ্ছে 🔎...অপেক্ষা করুন 🙏")
     try:
         async with aiohttp.ClientSession() as session:
-            async with session.get(f"{API_BASE_URL}all/{query}") \
+            async with session.get(f"{ARQ_API_BASE_URL}torrent?query={query}") \
                     as resp:
                 a = json.loads(await resp.text())
     except:
         await m.edit("দুঃখিত 😐, কোন টরেন্ট পাওয়া যায়নি, অথবা আপনি ভুল নামে খুঁজছেন..😐")
         return
     result = (        
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: `{a[i]['Magnet']}`\n\n"
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂 {a[i]['name']}\n"
+        f"╟● আপলোড: {a[i]['uploaded']}\n"
+        f"╟● 📀সাইজ: {a[i]['size']}\n"
+        f"╟● 🔻লীচার: {a[i]['leechs']} "
+        f"●🔺সীডার: {a[i]['seeds']}\n"
+        f"╚● 🧲ম্যাগনেট: `{a[i]['magnet']}`\n\n"
         f"@BangladeshHoarding \n"
         f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
     )
@@ -243,11 +285,13 @@ async def callback_query_next(_, message):
     global query
     i += 1
     result = (        
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: `{a[i]['Magnet']}`\n\n"
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂 {a[i]['name']}\n"
+        f"╟● আপলোড: {a[i]['uploaded']}\n"
+        f"╟● 📀সাইজ: {a[i]['size']}\n"
+        f"╟● 🔻লীচার: {a[i]['leechs']} "
+        f"●🔺সীডার: {a[i]['seeds']}\n"
+        f"╚● 🧲ম্যাগনেট: `{a[i]['magnet']}`\n\n"
         f"@BangladeshHoarding \n"
         f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
     )
@@ -276,11 +320,13 @@ async def callback_query_previous(_, message):
     global query
     i -= 1
     result = (        
-        f"╔● 📂- {a[i]['Name']}\n"        
-        f"╟● 📀সাইজ: {a[i]['Size']}\n"
-        f"╟● 🔻লীচার: {a[i]['Leechers']} টি ||" 
-        f"●🔺সীডার: {a[i]['Seeders']} টি\n"
-        f"╚● 🧲ম্যাগনেট: `{a[i]['Magnet']}`\n\n"
+        f"**Page - {i+1}**\n\n"
+        f"╔● 📂 {a[i]['name']}\n"
+        f"╟● আপলোড: {a[i]['uploaded']}\n"
+        f"╟● 📀সাইজ: {a[i]['size']}\n"
+        f"╟● 🔻লীচার: {a[i]['leechs']} "
+        f"●🔺সীডার: {a[i]['seeds']}\n"
+        f"╚● 🧲ম্যাগনেট: `{a[i]['magnet']}`\n\n"
         f"@BangladeshHoarding \n"
         f"╠▬▬▬▬▬▬❝ 🄱🄳🄷 ❞▬▬▬▬▬▬╣"
     )
