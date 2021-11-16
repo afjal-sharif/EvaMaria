@@ -472,3 +472,155 @@ async def id(_, update):
         disable_web_page_preview=True,
         reply_markup=reply_markup
     )
+
+@Client.on_message(filters.command(["pl"]) & ~filters.edited & filters.chat(SUDO_CHATS_ID))
+async def search(_, message):
+    global i, m, data
+    if len(message.command) < 2:
+      await message.reply_text('ফাইল খুঁজতে নিচের কমান্ড গুলো ব্যবহার করুন \n /search [FileName] \n /find [FileName] \n /s [FileName] \n /f [FileName] \n\n এইভাবে খুঁজুনঃ /s Avenger')
+      return
+    query = message.text.split(' ',maxsplit=1)[1]
+    m = await message.reply_text("**🔎 ফাইলটি খোঁজা হচ্ছে 🔎..অপেক্ষা করুন 🙏.. \n\n 💚@BangladeshHoarding💚**")
+    data = drive.drive_list(query)
+    
+    results = len(data)
+    i = 0
+    i = i + RESULTS_COUNT
+
+    if results == 0:
+        await m.edit(text="দুঃখিত 😐, কোন ফাইল পাওয়া যায়নি, অথবা আপনি ভুল নামে খুঁজছেন... @imdb বট হতে সঠিক নাম জেনে নিন । \n\n 💚@BangladeshHoarding💚")
+        return
+
+    text = f"**🔎 𝐓𝐨𝐭𝐚𝐥 𝐑𝐞𝐬𝐮𝐥𝐭𝐬:** __{results}__ \n"
+    for count in range(min(i, results)):
+        if data[count]['type'] == "file":
+            text += f"""
+⏬ [{data[count]['name']}]({data[count]['url']})
+**📀 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
+  \n"""
+
+        else:
+            text += f"""
+⏬ [__{data[count]['name']}__]({data[count]['url']})  
+\n"""
+    if len(data) > RESULTS_COUNT:
+        keyboard = InlineKeyboardMarkup(
+            [
+                [
+                    InlineKeyboardButton(
+                        text="<< ⏮️ পূর্ববর্তী",
+                        callback_data="previous"
+                    ),
+                    InlineKeyboardButton(
+                        text="পরবর্তী ⏭️ >>",
+                        callback_data="next"
+                    )                  
+                ],
+                [
+                    InlineKeyboardButton("🔎 টেলিগ্রাম ফাইল খুঁজুন 🔎", switch_inline_query_current_chat="")
+                ],
+            ]
+        )
+        try:
+            await m.edit(text=text, disable_web_page_preview=True, reply_markup=keyboard)
+        except (MessageEmpty, MessageNotModified):
+            pass
+        return
+    try:
+        await m.edit(text=text, disable_web_page_preview=True)
+    except (MessageEmpty, MessageNotModified):
+        pass
+
+
+@Client.on_callback_query(filters.regex("previous"))
+async def previous_callbacc(_, CallbackQuery):
+    global i, ii, m, data
+    if i < RESULTS_COUNT:
+        await CallbackQuery.answer(
+            "আপনি প্রথম পেইজে আছেন...",
+            show_alert=True
+        )
+        return
+    ii -= RESULTS_COUNT
+    i -= RESULTS_COUNT
+    text = ""
+
+    for count in range(ii, i):
+        try:
+            if data[count]['type'] == "file":
+                text += f"""
+⏬ [{data[count]['name']}]({data[count]['url']})
+**📀 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
+\n"""
+            else:
+                text += f"""
+⏬ [__{data[count]['name']}__]({data[count]['url']})
+\n"""
+        except IndexError:
+            continue
+
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    text="<< ⏮️ পূর্ববর্তী",
+                    callback_data="previous"
+                ),
+                InlineKeyboardButton(
+                    text="পরবর্তী ⏭️ >>",
+                    callback_data="next"
+                )              
+            ],
+            [
+                InlineKeyboardButton("🔎 টেলিগ্রাম ফাইল খুঁজুন 🔎", switch_inline_query_current_chat="")
+            ],
+        ]
+    )
+    try:
+        await m.edit(text=text, disable_web_page_preview=True, reply_markup=keyboard)
+    except (MessageEmpty, MessageNotModified):
+        pass
+
+
+@Client.on_callback_query(filters.regex("next"))
+async def next_callbacc(_, CallbackQuery):
+    global i, ii, m, data
+    ii = i
+    i += RESULTS_COUNT
+    text = ""
+
+    for count in range(ii, i):
+        try:
+            if data[count]['type'] == "file":
+                text += f"""
+⏬ [{data[count]['name']}]({data[count]['url']})
+**📀 𝐅𝐢𝐥𝐞 𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
+\n"""
+            else:
+                text += f"""
+⏬ [__{data[count]['name']}__]({data[count]['url']})
+\n"""
+        except IndexError:
+            continue
+
+    keyboard = InlineKeyboardMarkup(
+        [
+            [
+                InlineKeyboardButton(
+                    text="<< ⏮️ পূর্ববর্তী",
+                    callback_data="previous"
+                ),
+                InlineKeyboardButton(
+                    text="পরবর্তী ⏭️ >>",
+                    callback_data="next"
+                )              
+            ],
+            [
+                InlineKeyboardButton("🔎 টেলিগ্রাম ফাইল খুঁজুন 🔎", switch_inline_query_current_chat="")
+            ],
+        ]
+    )
+    try:
+        await m.edit(text=text, disable_web_page_preview=True, reply_markup=keyboard)
+    except (MessageEmpty, MessageNotModified):
+        pass
