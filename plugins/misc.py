@@ -179,7 +179,7 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
         await query.message.edit(f"IMDb Data:\n\n🏷 <a href={imdb['url']}>{imdb.get('title')}</a>\n\n<b>🎭 Genres:</b> {imdb.get('genres')}\n<b>📆 Year:</b> <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n<b>🌟 Rating:</b>  <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n\n<i><b>🖋 StoryLine:</b> {imdb.get('plot')} </i>", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
     await query.answer(b)
 
-posttem = "\n\n ▬▬▬ ❝ 🄻🄸🄽🄺🅂 ❞ ▬▬▬ \n\n\n\n ▬▬▬▬ ❝ 🄱🄳🄷 ❞ ▬▬▬▬ \n\n <a href="https://t.me/BangladeshHoarding">🚀 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰</a> | <a href="https://t.me/BDH_PM_bot"> 💬 𝐈𝐧𝐛𝐨𝐱 </a> | <a href="https://t.me/bangladeshhoarding/5">🙏 𝐃𝐢𝐬𝐜𝐥𝐚𝐢𝐦𝐞𝐫</a>"  
+posttem = """\n\n ▬▬▬ ❝ 🄻🄸🄽🄺🅂 ❞ ▬▬▬ \n\n\n\n ▬▬▬▬ ❝ 🄱🄳🄷 ❞ ▬▬▬▬ \n\n[🚀 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰](https://t.me/BangladeshHoarding) | [💬 𝐈𝐧𝐛𝐨𝐱](https://t.me/BDH_PM_bot) | [🙏 𝐃𝐢𝐬𝐜𝐥𝐚𝐢𝐦𝐞𝐫](https://t.me/bangladeshhoarding/5)"""
 @Client.on_message(filters.command(["post", 'p']))
 async def imdb_search(client, message):
     if ' ' in message.text:
