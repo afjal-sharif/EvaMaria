@@ -474,7 +474,7 @@ async def id(_, update):
     )
 
 @Client.on_message(filters.command(["pl"]) & ~filters.edited & filters.chat(SUDO_CHATS_ID))
-async def search(_, message):
+async def searchpl(_, message):
     global i, m, data
     if len(message.command) < 2:
       await message.reply_text('ফাইল খুঁজতে নিচের কমান্ড গুলো ব্যবহার করুন \n /search [FileName] \n /find [FileName] \n /s [FileName] \n /f [FileName] \n\n এইভাবে খুঁজুনঃ /s Avenger')
