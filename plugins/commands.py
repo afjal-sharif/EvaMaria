@@ -249,12 +249,12 @@ async def search(_, message):
             text += f"""
 📄 **[{data[count]['name']}]({data[count]['url']})**
 **📀𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
-╠▬▬▬▬▬[❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding)▬▬▬▬▬╣\n"""
+▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
 
         else:
             text += f"""
 📂 **[{data[count]['name']}]({data[count]['url']})**
-╠▬▬▬▬▬[❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding)▬▬▬▬▬╣\n"""
+▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
     if len(data) > RESULTS_COUNT:
         keyboard = InlineKeyboardMarkup(
             [
@@ -303,12 +303,12 @@ async def previous_callbacc(_, CallbackQuery):
                 text += f"""
 📄 **[{data[count]['name']}]({data[count]['url']})**
 **📀𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
-╠▬▬▬▬▬[❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding)▬▬▬▬▬╣\n"""
+▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
 
             else:
                 text += f"""
 📂 **[{data[count]['name']}]({data[count]['url']})**
-╠▬▬▬▬▬[❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding)▬▬▬▬▬╣\n"""
+▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
         except IndexError:
             continue
 
@@ -348,12 +348,12 @@ async def next_callbacc(_, CallbackQuery):
                 text += f"""
 📄 **[{data[count]['name']}]({data[count]['url']})**
 **📀𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
-╠▬▬▬▬▬[❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding)▬▬▬▬▬╣\n"""
+▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
 
             else:
                 text += f"""
 📂 **[{data[count]['name']}]({data[count]['url']})**
-╠▬▬▬▬▬[❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding)▬▬▬▬▬╣\n"""
+▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
         except IndexError:
             continue
 
