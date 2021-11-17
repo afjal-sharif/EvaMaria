@@ -37,7 +37,7 @@ ARQ_API_BASE_URL = environ.get('ARQ_API_BASE_URL', 'https://thearq.tech/')
 ARQ_API_KEY = environ.get('ARQ_API_KEY', 'XEOVLE-RPVIDB-NXTLJD-RRXHQR-ARQ')
 
 # GDrive Search Config
-RESULTS_COUNT = 4  # NOTE Nuber of results to show, 4 is better
+RESULTS_COUNT = environ.get('RESULTS_COUNT', '6')  # NOTE Nuber of results to show, 4 is better
 SUDO_CHATS_ID = [ 993876207, -575492766, -1001319419576, -1001190259319, -1001352599350, 1304152521, 993876207, -497415557, -1001620235788]
 SUDO_CHATS_ID_GS = [ 993876207, 1304152521 ]
 
