@@ -7,7 +7,7 @@ from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired, Messag
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery, Message
 from database.ia_filterdb import Media, get_file_details
 from database.users_chats_db import db
-from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PICS, RESULTS_COUNT, SUDO_CHATS_ID, SUDO_CHATS_ID_GS
+from info import CHANNELS, ADMINS, AUTH_CHANNEL, CUSTOM_FILE_CAPTION, LOG_CHANNEL, PICS, RESULTS_COUNT, SUDO_CHATS_ID, SUDO_CHATS_ID_GS, CHAT_ID
 from utils import get_size, is_subscribed, temp
 from drive import drive
 from requests import get as g
@@ -100,7 +100,6 @@ async def start(client, message):
         file_id=file_id,
         caption=f_caption,
         )
-                    
 
 @Client.on_message(filters.command('channel') & filters.user(ADMINS))
 async def channel_info(bot, message):
@@ -212,6 +211,11 @@ DEFAULT_START_MARKUP= InlineKeyboardMarkup(
         InlineKeyboardButton('📢 Bangladesh Hoarding 📢', url=f"https://t.me/bangladeshHoarding")
         ]]
     )
+#Anonomous Chating
+@Client.on_message(filters.command('anno') & filters.private & filters.user(ADMINS))
+async def anno(bot, update):
+    await bot.send_message(CHAT_ID,update.text)
+    
 #/help Command 
 @Client.on_message(filters.command("help") & ~filters.edited)
 async def help_command(_, message):
