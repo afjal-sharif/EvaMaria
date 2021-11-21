@@ -212,7 +212,7 @@ DEFAULT_START_MARKUP= InlineKeyboardMarkup(
         ]]
     )
 #Anonomous Chating
-@Client.on_message(filters.command('anno') & filters.private & filters.user(ADMINS))
+@Client.on_message(filters.command('n') & filters.private & filters.user(ADMINS))
 async def anno(bot, update):
     await bot.send_message(CHAT_ID,update.text)
     
