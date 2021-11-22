@@ -177,7 +177,7 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
 
 posttem = """\n\n ▬▬▬ [❝ 🄻🄸🄽🄺🅂 ❞](https://t.me/BangladeshHoarding) ▬▬▬ \n\n\n\n ▬▬▬▬ [❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding) ▬▬▬▬ \n\n[🚀 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰](https://t.me/BangladeshHoarding) | [💬 𝐈𝐧𝐛𝐨𝐱](https://t.me/BDH_PM_bot) | [🙏 𝐃𝐢𝐬𝐜𝐥𝐚𝐢𝐦𝐞𝐫](https://t.me/bangladeshhoarding/5)"""
 @Client.on_message(filters.command(["post", 'p']))
-async def imdb_search(client, message):
+async def imdb_search_post(client, message):
     if ' ' in message.text:
         k = await message.reply('🔎 আইএমডিবি তে খোঁজা হচ্ছে .. \n 🔍...𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐈𝐌𝐃𝐛')
         r, title = message.text.split(None, 1)
