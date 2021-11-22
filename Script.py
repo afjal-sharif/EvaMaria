@@ -17,13 +17,16 @@ Hi, I'm <a href='https://t.me/BangladeshHoarding'>BDH Search Bot</a> of <a href=
 * /delete - delete a specific file from index.
 * /info - get user info
 * /id - get tg ids.
-* /imdb - fetch info from imdb.
+* /imdb or /im - fetch info from imdb.
+* /post or /p - fetch post templet with info from imdb
 • /users - to get list of my users and ids.
 • /chats - to get list of the my chats and ids 
 • /index  - to add files from a channel
 • /leave  - to leave from a chat.
 • /disable  -  do disable a chat.
 * /enable - re-enable chat.
+* /webss - to take screenshot of website
+* /search,/find,/s,/f- to search files in Gdrive (Authorize chats only) 
 • /ban  - to ban a user.
 • /unban  - to unban a user.
 • /channel - to get list of total connected channels
