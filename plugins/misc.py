@@ -383,15 +383,14 @@ requestRegex = "#[rR][eE][qQ][uU][eE][sS][tT] "
 async def reqh(bot:Update, msg:Message):
     botInfo = await bot.get_me()
     await msg.reply_text(
-        "<b>Hi, I am Request Tracker Bot🤖.\
+        "<b>Request Tracker.\
         \nIf you hadn't added me in your Group & Channel then ➕add me now.\
         \n\nHow to Use me?</b>\
         \n\t1. Add me to your Group & CHannel.\
         \n\t2. Make me admin in both Channel & Group.\
         \n\t3. Give permission to Post , Edit & Delete Messages.\
         \n\t4. Now send Group ID & Channel ID in this format <code>/add GroupID ChannelID</code>.\
-        \nNow Bot is ready to be used.\
-        \n\n<b>😊Join @AJPyroVerse & @AJPyroVerseGroup for getting more awesome 🤖bots like this.</b>",
+        \nNow Bot is ready to be used.\,
         parse_mode = "html",
         reply_markup = InlineKeyboardMarkup(
             [
@@ -404,25 +403,6 @@ async def reqh(bot:Update, msg:Message):
             ]
         )
     )
-    return
-
-@Client.on_message(filters.new_chat_members)
-async def chatHandler(bot:Update, msg:Message):
-    if msg.new_chat_members[0].is_self:
-        await msg.reply_text(
-            f"<b>Your Group ID is <code>{msg.chat.id}</code></b>",
-            parse_mode = "html"
-        )
-    return
-
-@Client.on_message(filters.forwarded & filters.private)
-async def forwardedHandler(bot:Update, msg:Message):
-    forwardInfo = msg.forward_from_chat
-    if forwardInfo.type == "channel":
-        await msg.reply_text(
-            f"<b>Your Channel ID is <code>{forwardInfo.id}</code></b>",
-            parse_mode = "html"
-        )
     return
 
 @Client.on_message(filters.private & filters.command("add"))
