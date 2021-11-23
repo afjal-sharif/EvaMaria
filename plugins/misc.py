@@ -390,7 +390,7 @@ async def reqh(bot:Update, msg:Message):
         \n\t2. Make me admin in both Channel & Group.\
         \n\t3. Give permission to Post , Edit & Delete Messages.\
         \n\t4. Now send Group ID & Channel ID in this format <code>/add GroupID ChannelID</code>.\
-        \nNow Bot is ready to be used.\,
+        \nNow Bot is ready to be used,
         parse_mode = "html",
         reply_markup = InlineKeyboardMarkup(
             [
