@@ -26,6 +26,7 @@ CHAT_ID = int(environ.get("CHAT_ID", -1001190259319))
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "")
+MONGO_STR = environ.get("MONGO_STR", "") #2nd DB For Request
 DATABASE_NAME = environ.get('DATABASE_NAME', "BDH")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
