@@ -7,7 +7,7 @@ from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
 from pyrogram.types import Update, Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from info import ARQ_API_BASE_URL, ARQ_API_KEY, MONGO_STR
+from info import ARQ_API_BASE_URL, ARQ_API_KEY, CHANNEL_USERNAME,
 from pymongo import MongoClient
 from re import match
 from plugin import *
@@ -178,9 +178,9 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
         await query.message.edit(f"IMDb Data:\n\n🏷 <a href={imdb['url']}>{imdb.get('title')}</a>\n\n<b>🎭 Genres:</b> {imdb.get('genres')}\n<b>📆 Year:</b> <a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a>\n<b>🌟 Rating:</b>  <a href={imdb['url']}/ratings>{imdb.get('rating')}</a> / 10\n\n<i><b>🖋 StoryLine:</b> {imdb.get('plot')} </i>", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
     await query.answer(b)
 
-posttem = """\n\n ▬▬▬ [❝ 🄻🄸🄽🄺🅂 ❞](https://t.me/BangladeshHoarding) ▬▬▬ \n\n\n\n ▬▬▬▬ [❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding) ▬▬▬▬ \n\n[🚀 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰](https://t.me/BangladeshHoarding) | [💬 𝐈𝐧𝐛𝐨𝐱](https://t.me/BDH_PM_bot) | [🙏 𝐃𝐢𝐬𝐜𝐥𝐚𝐢𝐦𝐞𝐫](https://t.me/bangladeshhoarding/5)"""
+posttem = """\n\n ▬▬▬ [❝ 🄻🄸🄽🄺🅂 ❞](https://t.me/BangladeshHoarding) ▬▬▬ \n\n\n\n ▬▬▬▬ [❝ 🄱🄳🄷 ❞](https://t.me/BangladeshHoarding) ▬▬▬▬ \n\n[🚀 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰](https://t.me/BangladeshHoarding) | [💬 𝐈𝐧𝐛𝐨𝐱](https://t.me/BDH_PM_bot) | [🙏 𝐃𝐢𝐬𝐜𝐥𝐚𝐢𝐦𝐞𝐫](https://t.me/BangladeshHoarding/282)"""
 @Client.on_message(filters.command(["post", 'p']))
-async def imdb_search_post(client, message):
+async def postt(client, message):
     if ' ' in message.text:
         k = await message.reply('🔎 আইএমডিবি তে খোঁজা হচ্ছে .. \n 🔍...𝐒𝐞𝐚𝐫𝐜𝐡𝐢𝐧𝐠 𝐈𝐌𝐃𝐛')
         r, title = message.text.split(None, 1)
@@ -219,142 +219,64 @@ async def imdb_callback(bot: Client, query: CallbackQuery):
         await query.message.edit(f"🏷 <b><a href={imdb['url']}>{imdb.get('title')}</a></b>\n\n<b>🎭 Genres:</b> <i>{imdb.get('genres')}</i>\n<b>📆 Year:</b> <i><a href={imdb['url']}/releaseinfo>{imdb.get('year')}</a></i>\n<b>🌟 Rating:</b> <i><a href={imdb['url']}/ratings>{imdb.get('rating')}</a></i> / 10\n\n<i><b>🖋 StoryLine:</b> {imdb.get('plot')} </i>{posttem}", reply_markup=InlineKeyboardMarkup(btn), disable_web_page_preview=True)
     await query.answer(b)
         
-#Torrent Search 
-@Client.on_message(filters.command(['thelp']))
-async def help(_, message):
-    await message.reply_text("টরেন্ট সার্চ করতে এই কমান্ড ব্যাবহার করুন...\n /t [File name] \n /m [File name]")
+#ForeceSub On New Membe join
+static_data_filter = filters.create(lambda _, __, query: query.data == "hukaidaala")
 
-m = None
-i = 0
-a = None
-query = None
+@Client.on_callback_query(static_data_filter)
+def _onUnMuteRequest(client, lel):
+  user_id = lel.from_user.id
+  chat_id = lel.message.chat.id
+  chat_u = CHANNEL_USERNAME #channel for force sub
+  if chat_u:
+    channel = chat_u
+    chat_member = client.get_chat_member(chat_id, user_id)
+    if chat_member.restricted_by:
+      if chat_member.restricted_by.id == (client.get_me()).id:
+          try:
+            client.get_chat_member(channel, user_id)
+            client.unban_chat_member(chat_id, user_id)
+            if lel.message.reply_to_message.from_user.id == user_id:
+              lel.message.delete()
+          except UserNotParticipant:
+            client.answer_callback_query(lel.id, text="❗ চ্যানেল গুলোতে জয়েন করার পর আনমিউট বাটন আবার প্রেস করুন", show_alert=True)
+      else:
+        client.answer_callback_query(lel.id, text="❗ এডমিন আপনাকে আনমিউট করে দিয়েছে....", show_alert=True)
+    else:
+      if not client.get_chat_member(chat_id, (client.get_me()).id).status == 'administrator':
+        client.send_message(chat_id, f"❗ **{lel.from_user.mention} is trying to Unmute himself but I can't unmute him because I am not an admin in this chat.")
+      else:
+        client.answer_callback_query(lel.id, text="❗ Warning: Don't click the button if you can speak freely.", show_alert=True)
 
+@Client.on_message(filters.text & ~filters.edited, group=1)
+def _check_member(client, message):
+  chat_id = message.chat.id
+  chat_u = CHANNEL_USERNAME #channel for force sub
+  if chat_u:
+    user_id = message.from_user.id
+    if not client.get_chat_member(chat_id, user_id).status in ("administrator", "creator"):
+      channel = chat_u
+      try:
+        client.get_chat_member(channel, user_id)
+      except UserNotParticipant:
+         try: #tahukai daala
+              chat_u = chat_u.replace('@','')
+              tauk = message.from_user.mention
+              sent_message = message.reply_text(
+                WARN_MESSAGE,
+                disable_web_page_preview=True,
+                reply_markup=InlineKeyboardMarkup(
+                  [[
+                  InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐎𝐒", url=f"https://t.me/Bangladesh_Hoarding"),
+                  InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐖𝐙", url=f"https://t.me/{chat_u}")
+                  ],[
+                  InlineKeyboardButton("⛔️𝐔𝐧𝐦𝐮𝐭𝐞 𝐌𝐞⛔️", callback_data="hukaidaala")
+                  ]])
+              client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))
 
-@Client.on_message(filters.command(["t", "m"]))
-async def torrent(_, message):
-    global m
-    global i
-    global a
-    global query
-    try:
-        await message.delete()
-    except:
-        pass
-    if len(message.command) < 2:
-        await message.reply_text("টরেন্ট সার্চ করতে এই কমান্ড ব্যাবহার করুন...\n /t [File name] \n /m [File name]")
-        return
-    query = message.text.split(None, 1)[1].replace(" ", "%20")
-    m = await message.reply_text("🔎 টরেন্ট'টি খোঁজা হচ্ছে 🔎...অপেক্ষা করুন 🙏")
-    try:
-        async with aiohttp.ClientSession() as session:
-            async with session.get(f"{ARQ_API_BASE_URL}torrent?query={query}") \
-                    as resp:
-                a = json.loads(await resp.text())
-    except:
-        await m.edit("দুঃখিত 😐, কোন টরেন্ট পাওয়া যায়নি, অথবা আপনি ভুল নামে খুঁজছেন..😐")
-        return
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"Name: {a[i]['name']}\n"
-        f"Upload: {a[i]['uploaded']}\n"
-        f"Size: {a[i]['size']}\n"
-        f"Leechers: {a[i]['leechs']} "
-        f"seeders: {a[i]['seeds']}\n"
-        f"Magnet: `{a[i]['magnet']}`\n\n\n"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"Next {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"Delete {emoji.CROSS_MARK}",
-                                         callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
+         except ChatAdminRequired:
+            sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission__")
 
-
-@Client.on_callback_query(filters.regex("next"))
-async def callback_query_next(_, message):
-    global i
-    global m
-    global a
-    global query
-    i += 1
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"Name: {a[i]['name']}\n"
-        f"Upload: {a[i]['uploaded']}\n"
-        f"Size: {a[i]['size']}\n"
-        f"Leechers: {a[i]['leechs']} "
-        f"seeders: {a[i]['seeds']}\n"
-        f"Magnet: `{a[i]['magnet']}`\n\n\n"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} Previous",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"Next {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"Delete {emoji.CROSS_MARK}",
-                                         callback_data="delete")
-
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
+      except ChatAdminRequired:
+         client.send_message(chat_id, text=f"❗ **I am not an admin in {chat_u}**\n__Make me admin in the channel__")
 
 
-@Client.on_callback_query(filters.regex("previous"))
-async def callback_query_previous(_, message):
-    global i
-    global m
-    global a
-    global query
-    i -= 1
-    result = (
-        f"**Page - {i+1}**\n\n"
-        f"Name: {a[i]['name']}\n"
-        f"Upload: {a[i]['uploaded']}\n"
-        f"Size: {a[i]['size']}\n"
-        f"Leechers: {a[i]['leechs']} "
-        f"seeders: {a[i]['seeds']}\n"
-        f"Magnet: `{a[i]['magnet']}`\n\n\n"
-    )
-    await m.edit(
-        result,
-        reply_markup=InlineKeyboardMarkup(
-            [
-                [
-                    InlineKeyboardButton(f"{emoji.LEFT_ARROW} Previous",
-                                         callback_data="previous"),
-                    InlineKeyboardButton(f"Next {emoji.RIGHT_ARROW}",
-                                         callback_data="next"),
-                    InlineKeyboardButton(f"Delete {emoji.CROSS_MARK}",
-                                         callback_data="delete")
-                ]
-            ]
-        ),
-        parse_mode="markdown",
-    )
-
-
-@Client.on_callback_query(filters.regex("delete"))
-async def callback_query_delete(_, message):
-    global m
-    global i
-    global a
-    global query
-    await m.delete()
-    m = None
-    i = 0
-    a = None
-    query = None
