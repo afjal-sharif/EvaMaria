@@ -26,21 +26,16 @@ CHAT_ID = int(environ.get("CHAT_ID", -1001190259319))
 
 # MongoDB information
 DATABASE_URI = environ.get('DATABASE_URI', "")
-MONGO_STR = environ.get("MONGO_STR", "") #2nd DB For Request
 DATABASE_NAME = environ.get('DATABASE_NAME', "BDH")
 COLLECTION_NAME = environ.get('COLLECTION_NAME', 'Telegram_files')
 LOG_CHANNEL = int(environ.get('LOG_CHANNEL', ''))
-SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'TeamEvamaria')
+SUPPORT_CHAT = environ.get('SUPPORT_CHAT', 'BangladeshHoarding')
 
 CUSTOM_FILE_CAPTION = environ.get("CUSTOM_FILE_CAPTION", None)
 
-#ARQ API Search
-ARQ_API_BASE_URL = environ.get('ARQ_API_BASE_URL', 'https://thearq.tech/')
-ARQ_API_KEY = environ.get('ARQ_API_KEY', 'XEOVLE-RPVIDB-NXTLJD-RRXHQR-ARQ')
-
 #ForceSub MOD
 CHANNEL_USERNAME = os.environ.get("CHANNEL_USERNAME", "@BangladeshHoarding")
-WARN_MESSAGE = os.environ.get("WARN_MESSAGE", "ভাই, দুঃখিত, আপনাকে সাময়িক মিউট করা হয়েছে, নিচের চ্যানেল গুলোতে জয়েন করার পর আনমিউট বাটনে ক্লিক করে আনমিউট হয়ে নিন, আনমিউট হওয়ার পর গ্রুপের ব্যবহার করতে পারবেন।")
+WARN_MESSAGE = os.environ.get("WARN_MESSAGE", "ভাই, দুঃখিত, আপনাকে সাময়িক মিউট করা হয়েছে, নিচের চ্যানেল গুলোতে জয়েন করার পর আনমিউট বাটনে ক্লিক করে আনমিউট হয়ে নিন, আনমিউট হওয়ার পর গ্রুপে ব্যবহার করতে পারবেন।")
 
 # GDrive Search Config
 RESULTS_COUNT = 6  # NOTE Nuber of results to show, 4 is better
