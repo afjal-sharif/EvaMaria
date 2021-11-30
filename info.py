@@ -40,7 +40,7 @@ ARQ_API_KEY = environ.get('ARQ_API_KEY', 'XEOVLE-RPVIDB-NXTLJD-RRXHQR-ARQ')
 
 #ForceSub MOD
 CHANNEL_USERNAME = os.environ.get("CHANNEL_USERNAME", "@BangladeshHoarding")
-WARN_MESSAGE = os.environ.get("WARN_MESSAGE", "")
+WARN_MESSAGE = os.environ.get("WARN_MESSAGE", "ভাই, দুঃখিত, আপনাকে সাময়িক মিউট করা হয়েছে, নিচের চ্যানেল গুলোতে জয়েন করার পর আনমিউট বাটনে ক্লিক করে আনমিউট হয়ে নিন, আনমিউট হওয়ার পর গ্রুপের ব্যবহার করতে পারবেন।")
 
 # GDrive Search Config
 RESULTS_COUNT = 6  # NOTE Nuber of results to show, 4 is better
