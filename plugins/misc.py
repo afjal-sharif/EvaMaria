@@ -251,7 +251,7 @@ def _onUnMuteRequest(client, lel):
       else:
         client.answer_callback_query(lel.id, text="❗ Warning: Don't click the button if you can speak freely.", show_alert=True)
 
-@Client.on_message(filters.text & ~filters.edited, group=1)
+@Client.on_message(filters.text & ~filters.group & ~filters.edited, group=1)
 def _check_member(client, message):
   chat_id = message.chat.id
   chat_u = CHANNEL_USERNAME #channel for force sub
