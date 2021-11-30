@@ -274,9 +274,9 @@ def _check_member(client, message):
                   InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐖𝐙", url=f"https://t.me/{chat_u}")],
                   [InlineKeyboardButton("⛔️𝐔𝐧𝐦𝐮𝐭𝐞 𝐌𝐞⛔️", callback_data="hukaidaala")]]))
               client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))               
-        except ChatAdminRequired:
-          sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission and add me again.\n#Leaving this chat...__")
-          client.leave_chat(chat_id)
+         except ChatAdminRequired:
+           sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission and add me again.\n#Leaving this chat...__")
+           client.leave_chat(chat_id)
       except ChatAdminRequired:
         client.send_message(chat_id, text=f"❗ **I am not an admin in @{channel}**\n__Make me admin in the channel and add me again.\n#Leaving this chat...__")
         client.leave_chat(chat_id)
