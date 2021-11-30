@@ -271,13 +271,11 @@ def _check_member(client, message):
                 reply_markup=InlineKeyboardMarkup(
                   [[
                   InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐎𝐒", url=f"https://t.me/Bangladesh_Hoarding"),
-                  InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐖𝐙", url=f"https://t.me/{chat_u}")
-                  ],[
-                  InlineKeyboardButton("⛔️𝐔𝐧𝐦𝐮𝐭𝐞 𝐌𝐞⛔️", callback_data="hukaidaala")
-                  ]])
+                  InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐖𝐙", url=f"https://t.me/{chat_u}")],
+                  [InlineKeyboardButton("⛔️𝐔𝐧𝐦𝐮𝐭𝐞 𝐌𝐞⛔️", callback_data="hukaidaala")]])
               client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))
-
-         except ChatAdminRequired:
+                  
+        except ChatAdminRequired:
             sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission__")
 
       except ChatAdminRequired:
