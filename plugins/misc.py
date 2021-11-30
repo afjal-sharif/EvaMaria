@@ -1,16 +1,20 @@
 import os
+import time
+import logging
 import aiohttp
 import json
 from pyrogram import Client, filters, emoji
-from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant
+from pyrogram.errors.exceptions.bad_request_400 import UserNotParticipant, UsernameNotOccupied, ChatAdminRequired, PeerIdInvalid
 from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
-from pyrogram.types import Update, Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery
-from info import ARQ_API_BASE_URL, ARQ_API_KEY, CHANNEL_USERNAME,
+from pyrogram.types import Update, Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatPermissions
+from info import CHANNEL_USERNAME, WARN_MESSAGE
 from pymongo import MongoClient
 from re import match
 from plugin import *
+
+logging.basicConfig(level=logging.INFO)
 
 @Client.on_message(filters.command('id'))
 async def showid(client, message):
