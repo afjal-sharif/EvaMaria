@@ -280,4 +280,3 @@ def _check_member(client, message):
       except ChatAdminRequired:
         client.send_message(chat_id, text=f"❗ **I am not an admin in @{channel}**\n__Make me admin in the channel and add me again.\n#Leaving this chat...__")
         client.leave_chat(chat_id)
-
