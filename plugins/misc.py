@@ -252,12 +252,12 @@ def _onUnMuteRequest(client, lel):
         client.answer_callback_query(lel.id, text="❗ Warning: Don't click the button if you can speak freely.", show_alert=True)
 
 @Client.on_message(filters.text & ~filters.edited, group=1)
-def _check_member(Client, message):
+def _check_member(client, message):
   chat_id = message.chat.id
   chat_u = CHANNEL_USERNAME #channel for force sub
   if chat_u:
     user_id = message.from_user.id
-    if not Client.get_chat_member(chat_id, user_id).status in ("administrator", "creator"):
+    if not client.get_chat_member(chat_id, user_id).status in ("administrator", "creator"):
       channel = chat_u
       try:
         client.get_chat_member(channel, user_id)
@@ -273,12 +273,6 @@ def _check_member(Client, message):
                   InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐎𝐒", url=f"https://t.me/Bangladesh_Hoarding"),
                   InlineKeyboardButton("📢 𝐁𝐃𝐇-𝐖𝐙", url=f"https://t.me/{chat_u}")],
                   [InlineKeyboardButton("⛔️𝐔𝐧𝐦𝐮𝐭𝐞 𝐌𝐞⛔️", callback_data="hukaidaala")]]))
-              Client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))
-                  
-        except ChatAdminRequired:
-            sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission__")
-
-      except ChatAdminRequired:
-         client.send_message(chat_id, text=f"❗ **I am not an admin in {chat_u}**\n__Make me admin in the channel__")
-
+              client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))               
+       
 
