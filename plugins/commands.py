@@ -204,8 +204,8 @@ DEFAULT_START_MARKUP= InlineKeyboardMarkup(
         InlineKeyboardButton("Go Inline 🗣️", switch_inline_query='')
         ],
         [
-        InlineKeyboardButton("🖲️ Commands", callback_data="help"),
-        InlineKeyboardButton("About Group🧑‍🔧", callback_data="about")
+        InlineKeyboardButton("🖲️ Rules", callback_data="source"),
+        InlineKeyboardButton("About Group 🧑", callback_data="about")
         ],
         [
         InlineKeyboardButton('📢 Bangladesh Hoarding 📢', url=f"https://t.me/bangladeshHoarding")
