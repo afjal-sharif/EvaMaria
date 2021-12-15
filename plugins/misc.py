@@ -1,4 +1,6 @@
 import os
+import heroku3
+from functools import wraps
 import time
 import logging
 import aiohttp
@@ -9,10 +11,41 @@ from utils import extract_user, get_file_id, get_poster, last_online
 import time
 from datetime import datetime
 from pyrogram.types import Update, Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, ChatPermissions
-from info import CHANNEL_USERNAME, WARN_MESSAGE
+from info import CHANNEL_USERNAME, WARN_MESSAGE, SUDO_CHATS_ID_GS
 from pymongo import MongoClient
 from re import match
 from plugin import *
+
+#Heroku Dyno Restart Mod
+HEROKU_API_KEY = "d5d2d798-5b73-4951-ae05-234aac4ee475"
+HEROKU_APP_NAME = "tggdautoupdate"
+
+heroku_client = None
+if HEROKU_API_KEY:
+    heroku_client = heroku3.from_key(HEROKU_API_KEY)
+
+def check_heroku(func):
+    @wraps(func)
+    async def heroku_cli(client, message):
+        heroku_app = None
+        if not heroku_client:
+            await message.reply_text("`Please Add HEROKU_API_KEY Key For This To Function To Work!`", parse_mode="markdown")
+        elif not HEROKU_APP_NAME:
+            await message.reply_text("`Please Add HEROKU_APP_NAME For This To Function To Work!`", parse_mode="markdown")
+        if HEROKU_APP_NAME and heroku_client:
+            try:
+                heroku_app = heroku_client.app(HEROKU_APP_NAME)
+            except:
+                await message.reply_text(message, "`Heroku Api Key And App Name Doesn't Match!`", parse_mode="markdown")
+            if heroku_app:
+                await func(client, message, heroku_app)
+
+    return heroku_cli
+@Client.on_message(filters.command(['reboot', 'reboot@bdsearch_bot']) & filters.user(SUDO_CHATS_ID_GS))
+@check_heroku
+async def gib_restart(client, message, hap):
+    msg_ = await message.reply_text("[Server] - Restarting..Please wait few Minites then use")
+    hap.restart()
 
 logging.basicConfig(level=logging.INFO)
 
