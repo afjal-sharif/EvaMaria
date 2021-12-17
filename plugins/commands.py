@@ -202,8 +202,10 @@ async def delete_all_index_confirm(bot, message):
 #ALEXMOD STARTED FROM NOW
 DEFAULT_START_MARKUP= InlineKeyboardMarkup(
         [[
-        InlineKeyboardButton("🔎 Search TG Files", switch_inline_query_current_chat=''),
-        InlineKeyboardButton("Go Inline 🗣️", switch_inline_query='')
+        InlineKeyboardButton("🔍 টেলিগ্রাম ফাইল সার্চ 🔍", switch_inline_query_current_chat='')
+        ],
+        [
+        InlineKeyboardButton("➕অন্য গ্রুপে ফাইল সার্চ ➕", switch_inline_query='')
         ],
         [
         InlineKeyboardButton("🖲️ Rules", callback_data="source"),
@@ -275,7 +277,7 @@ async def search(_, message):
                     )                  
                 ],
                 [
-                    InlineKeyboardButton("🔎 টেলিগ্রাম ফাইল খুঁজুন 🔎", switch_inline_query_current_chat="")
+                    InlineKeyboardButton("🔍 টেলিগ্রাম ফাইল সার্চ 🔍", switch_inline_query_current_chat="")
                 ],
             ]
         )
@@ -331,7 +333,7 @@ async def previous_callbacc(_, CallbackQuery):
                 )              
             ],
             [
-                InlineKeyboardButton("🔎 টেলিগ্রাম ফাইল খুঁজুন 🔎", switch_inline_query_current_chat="")
+                InlineKeyboardButton("🔍 টেলিগ্রাম ফাইল সার্চ 🔍", switch_inline_query_current_chat="")
             ],
         ]
     )
@@ -376,7 +378,7 @@ async def next_callbacc(_, CallbackQuery):
                 )              
             ],
             [
-                InlineKeyboardButton("🔎 টেলিগ্রাম ফাইল খুঁজুন 🔎", switch_inline_query_current_chat="")
+                InlineKeyboardButton("🔍 টেলিগ্রাম ফাইল সার্চ 🔍", switch_inline_query_current_chat="")
             ],
         ]
     )
