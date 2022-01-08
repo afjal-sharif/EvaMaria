@@ -255,7 +255,7 @@ async def search(_, message):
     for count in range(min(i, results)):
         if data[count]['type'] == "file":
             text += f"""
-📄**[ {data[count]['name']} ]({data[count]['url'?a=view]})**
+📄**[ {data[count]['name']} ]({data[count]['url']})**
 **📀𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
 ▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
 
@@ -309,7 +309,7 @@ async def previous_callbacc(_, CallbackQuery):
         try:
             if data[count]['type'] == "file":
                 text += f"""
-📄**[ {data[count]['name']} ]({data[count]['url'?a=view]})**
+📄**[ {data[count]['name']} ]({data[count]['url']})**
 **📀𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
 ▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
 
@@ -354,7 +354,7 @@ async def next_callbacc(_, CallbackQuery):
         try:
             if data[count]['type'] == "file":
                 text += f"""
-📄**[ {data[count]['name']} ]({data[count]['url'?a=view]})**
+📄**[ {data[count]['name']} ]({data[count]['url']})**
 **📀𝐒𝐢𝐳𝐞:** __{data[count]['size']}__
 ▁▁▁▁[🄱🄳🄷](https://t.me/BangladeshHoarding)▁▁▁▁▁▁▁▁▁▁▁▁\n"""
 
