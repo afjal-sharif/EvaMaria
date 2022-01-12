@@ -419,7 +419,7 @@ async def take_fullss(_, message: Message):
         await m.edit("**Uploading Soon**")
         try:
             await message.reply_photo(
-                photo=f"https://api.screenshotmachine.com?key=791294&url={url}&dimension=1024xfull&format=png&cacheLimit=0&delay=400&zoom=200",                
+                photo=f"https://api.screenshotmachine.com?key=791294&url={url}&dimension=1024xfull&format=jpg&cacheLimit=0&delay=400",                
                 quote=False,
             )
         except TypeError:
