@@ -389,6 +389,7 @@ async def next_callbacc(_, CallbackQuery):
 
 #webss MOD- For taking website screenShot
 #Webshot api- photo=f"https://api.apiflash.com/v1/urltoimage?access_key=b6136e28fba742d7800d0ca235b9e68c&url={url}",
+#Webshot api- https://api.screenshotmachine.com?key=791294&url=https%3A%2F%2Fstatus.indexbd.cf&dimension=1024xfull&format=jpg&cacheLimit=0&delay=600
 @Client.on_message(filters.command("webss"))
 async def take_ss(_, message: Message):
     try:
@@ -399,7 +400,26 @@ async def take_ss(_, message: Message):
         await m.edit("**Uploading Soon**")
         try:
             await message.reply_photo(
-                photo=f"https://ws.wrench.gq/ss?url={url}?quality=80&delay=1000&format=png",                
+                photo=f"https://ws.wrench.gq/ss?url={url}?quality=90&delay=1000&format=png",                
+                quote=False,
+            )
+        except TypeError:
+            return await m.edit("No Such Website.")
+        await m.delete()
+    except Exception as e:
+        await message.reply_text(str(e))
+        
+@Client.on_message(filters.command("fwebss"))
+async def take_ss(_, message: Message):
+    try:
+        if len(message.command) != 2:
+            return await message.reply_text("Give A Url To Fetch Screenshot.")
+        url = message.text.split(None, 1)[1]
+        m = await message.reply_text("**Taking Screenshot**")
+        await m.edit("**Uploading Soon**")
+        try:
+            await message.reply_photo(
+                photo=f"https://api.screenshotmachine.com?key=791294&url={url}&dimension=1024xfull&format=jpg&cacheLimit=0&delay=600",                
                 quote=False,
             )
         except TypeError:
