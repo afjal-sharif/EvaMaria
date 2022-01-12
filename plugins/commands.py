@@ -426,18 +426,10 @@ async def take_fullss(_, message: Message):
             return await m.edit("No Such Website.")
         await m.delete()
     except Exception as e:
-        await message.reply_text(str(e))
-        
-@Client.on_message(filters.command("alive"))
-async def take_alivess(_, message: Message):
-    await message.reply_text("**Uploading Soon**")
-    try:    
-        await message.reply_photo(
-             photo=f"https://api.screenshotmachine.com?key=791294&url=https%3A%2F%2Fstatus.indexbd.cf&dimension=1024xfull&format=png&cacheLimit=0&delay=400&zoom=200",                
-             quote=False,
-            )
+        await message.reply_text(str(e))        
 
 #Wellcome New Member MOD  
+
 @Client.on_message(filters.new_chat_members)
 async def welcome(_, message):  
     welcome_msg = f""" 
