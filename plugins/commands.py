@@ -430,21 +430,11 @@ async def take_ss(_, message: Message):
         
 @Client.on_message(filters.command("alive"))
 async def take_ss(_, message: Message):
-    try:
-        if len(message.command) != 0:
-            return await message.reply_text("Give A Url To Fetch Screenshot.")        
-        m = await message.reply_text("**Taking Screenshot**")
-        await m.edit("**Uploading Soon**")
-        try:
-            await message.reply_photo(
-                photo=f"https://api.screenshotmachine.com?key=791294&url=https%3A%2F%2Fstatus.indexbd.cf&dimension=1024xfull&format=png&cacheLimit=0&delay=600&zoom=300",                
-                quote=False,
-            )
-        except TypeError:
-            return await m.edit("No Such Website.")
-        await m.delete()
-    except Exception as e:
-        await message.reply_text(str(e))
+    await message.reply_photo(
+         photo=f"https://api.screenshotmachine.com?key=791294&url=https%3A%2F%2Fstatus.indexbd.cf&dimension=1024xfull&format=png&cacheLimit=0&delay=600&zoom=300",                
+         quote=False,
+         )
+
 #Wellcome New Member MOD  
 @Client.on_message(filters.new_chat_members)
 async def welcome(_, message):  
