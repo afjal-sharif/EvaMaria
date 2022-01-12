@@ -419,7 +419,7 @@ async def take_fullss(_, message: Message):
         await m.edit("**Uploading Soon**")
         try:
             await message.reply_photo(
-                photo=f"https://api.screenshotmachine.com?key=791294&url={url}&dimension=1024xfull&format=png&cacheLimit=0&delay=600&zoom=300",                
+                photo=f"https://api.screenshotmachine.com?key=791294&url={url}&dimension=1024xfull&format=png&cacheLimit=0&delay=400&zoom=200",                
                 quote=False,
             )
         except TypeError:
@@ -430,10 +430,12 @@ async def take_fullss(_, message: Message):
         
 @Client.on_message(filters.command("alive"))
 async def take_alivess(_, message: Message):
-    await message.reply_photo(
-         photo=f"https://api.screenshotmachine.com?key=791294&url=https%3A%2F%2Fstatus.indexbd.cf&dimension=1024xfull&format=png&cacheLimit=0&delay=600&zoom=300",                
-         quote=False,
-         )
+    await message.reply_text("**Uploading Soon**")
+    try:    
+        await message.reply_photo(
+             photo=f"https://api.screenshotmachine.com?key=791294&url=https%3A%2F%2Fstatus.indexbd.cf&dimension=1024xfull&format=png&cacheLimit=0&delay=400&zoom=200",                
+             quote=False,
+            )
 
 #Wellcome New Member MOD  
 @Client.on_message(filters.new_chat_members)
