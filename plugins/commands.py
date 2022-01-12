@@ -388,6 +388,7 @@ async def next_callbacc(_, CallbackQuery):
         pass
 
 #webss MOD- For taking website screenShot
+#Webshot api- photo=f"https://api.apiflash.com/v1/urltoimage?access_key=b6136e28fba742d7800d0ca235b9e68c&url={url}",
 @Client.on_message(filters.command("webss"))
 async def take_ss(_, message: Message):
     try:
@@ -398,7 +399,7 @@ async def take_ss(_, message: Message):
         await m.edit("**Uploading Soon**")
         try:
             await message.reply_photo(
-                photo=f"https://api.apiflash.com/v1/urltoimage?access_key=b6136e28fba742d7800d0ca235b9e68c&url={url}",
+                photo=f"https://ws.wrench.gq/ss?url={url}?quality=80&delay=1000&format=png",                
                 quote=False,
             )
         except TypeError:
