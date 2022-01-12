@@ -410,7 +410,7 @@ async def take_ss(_, message: Message):
         await message.reply_text(str(e))
         
 @Client.on_message(filters.command("fwebss"))
-async def take_ss(_, message: Message):
+async def take_fullss(_, message: Message):
     try:
         if len(message.command) != 2:
             return await message.reply_text("Give A Url To Fetch Screenshot.")
@@ -429,7 +429,7 @@ async def take_ss(_, message: Message):
         await message.reply_text(str(e))
         
 @Client.on_message(filters.command("alive"))
-async def take_ss(_, message: Message):
+async def take_alivess(_, message: Message):
     await message.reply_photo(
          photo=f"https://api.screenshotmachine.com?key=791294&url=https%3A%2F%2Fstatus.indexbd.cf&dimension=1024xfull&format=png&cacheLimit=0&delay=600&zoom=300",                
          quote=False,
