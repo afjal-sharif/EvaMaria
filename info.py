@@ -158,7 +158,7 @@ DRIVE_ID = [
 "1guot-8-dGoY1tJ2UeroBi_QkDAC_wMDS",  # https://drive.google.com/drive/u/0/folders/1guot-8-dGoY1tJ2UeroBi_QkDAC_wMDS ✅
 "1rMsivIt0M6BlZXgiOaLWmeyap8EX6YWE",  # https://drive.google.com/drive/u/0/folders/1rMsivIt0M6BlZXgiOaLWmeyap8EX6YWE ✅
 "1iGNP47SiCy-NI9h755EdtAa4hK4aaaJ5",  # https://drive.google.com/drive/u/0/folders/1iGNP47SiCy-NI9h755EdtAa4hK4aaaJ5 ✅
-"164Zwctr57FGN3YmAPAHH99PueKhp7hL0",  # https://drive.google.com/drive/u/0/folders/164Zwctr57FGN3YmAPAHH99PueKhp7hL0 ❌
+"0AKZ2teG0cYiyUk9PVA",  # https://drive.google.com/drive/u/0/folders/164Zwctr57FGN3YmAPAHH99PueKhp7hL0 ❌
 "1O1kTFP-T2itcxslRxgqOKa4RkZto_2jf",  # https://drive.google.com/drive/u/0/folders/1O1kTFP-T2itcxslRxgqOKa4RkZto_2jf ❌
 "1_wfopFhnP7um9a3234glOqQ6A5kUIdUE",  # https://drive.google.com/drive/u/0/folders/1_wfopFhnP7um9a3234glOqQ6A5kUIdUE ❌
 "1DqvkdLqBAJZTMFt-isDj09PelD_9nM7W",  # https://drive.google.com/drive/u/0/folders/1DqvkdLqBAJZTMFt-isDj09PelD_9nM7W ❌
@@ -279,7 +279,7 @@ INDEX_URL = [
 "http://search.indexbd.cf/31:",
 "http://search.indexbd.cf/32:",
 "http://search.indexbd.cf/33:",
-"http://search.indexbd.cf/34:",
+"http://mirror2.indexbd.cf/0:", #Mirror2
 "http://search.indexbd.cf/35:",
 "http://search.indexbd.cf/36:",
 "http://search.indexbd.cf/37:",
