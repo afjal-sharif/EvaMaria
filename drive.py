@@ -87,7 +87,7 @@ class GoogleDriveHelper:
                 else:
                     size = self.get_readable_file_size(file.get('size'))
                     url_path = quote(f'{file.get("name")}')
-                    url = f'{INDEX_URL[INDEX]}/{url_path}?a=view'
+                    url = f'{INDEX_URL[INDEX]}/{url_path}'
                     data.append(
                         {
                             "type": "file",
