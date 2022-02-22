@@ -377,7 +377,7 @@ async def search(_, message):
         pass
 
 
-@app.on_callback_query(filters.regex("previous"))
+@Client.on_callback_query(filters.regex("previous"))
 async def previous_callbacc(_, CallbackQuery):
     global i, ii, m, data
     if i < RESULTS_COUNT:
@@ -430,7 +430,7 @@ async def previous_callbacc(_, CallbackQuery):
         pass
 
 
-@app.on_callback_query(filters.regex("next"))
+@Client.on_callback_query(filters.regex("next"))
 async def next_callbacc(_, CallbackQuery):
     global i, ii, m, data
     ii = i
