@@ -305,9 +305,9 @@ def _check_member(client, message):
                 disable_web_page_preview=True,
                 reply_markup=InlineKeyboardMarkup(
                   [[
-                  InlineKeyboardButton("📢 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 1️⃣", url=f"https://t.me/Bangladesh_Hoarding"),
-                  InlineKeyboardButton("📢 𝐉𝐨𝐢𝐧 𝐍𝐨𝐰 2️⃣", url=f"https://t.me/{chat_u}")],
-                  [InlineKeyboardButton("✅ 𝐔𝐧𝐦𝐮𝐭𝐞 𝐌𝐞 ✅", callback_data="hukaidaala")]]))
+                  InlineKeyboardButton("📢 Join Now 1", url=f"https://t.me/Bangladesh_Hoarding"),
+                  InlineKeyboardButton("📢 Join Now 2", url=f"https://t.me/{chat_u}")],
+                  [InlineKeyboardButton("✅ Unmute Me ✅", callback_data="hukaidaala")]]))
               client.restrict_chat_member(chat_id, user_id, ChatPermissions(can_send_messages=False))               
          except ChatAdminRequired:
            sent_message.edit("❗ **I am not an admin here.**\n__Make me admin with ban user permission and add me again.\n#Leaving this chat...__")
