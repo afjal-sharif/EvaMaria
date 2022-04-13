@@ -241,6 +241,28 @@ DRIVE_ID = [
 "1G3HsKLawDT4XeC-SwGY3O1hIwaDcdlM9",  # https://drive.google.com/drive/u/0/folders/1G3HsKLawDT4XeC-SwGY3O1hIwaDcdlM9 ✅
 "189k827BYKOCJlLnrgech6v0kuuBRlTmn",  # https://drive.google.com/drive/u/0/folders/189k827BYKOCJlLnrgech6v0kuuBRlTmn ✅
 "1nFQmpnlAaqZdqRRjZ5iSzWTauZDS-guz",  # https://drive.google.com/drive/u/0/folders/1nFQmpnlAaqZdqRRjZ5iSzWTauZDS-guz ✅
+"0AFtKtvl1aOygUk9PVA",  # https://drive.google.com/drive/u/0/folders/0AFtKtvl1aOygUk9PVA ✅ BOT.BDH.01
+"1n_Onxl3w5wSq2AxNvDZEQA6PrFFklTnx",  # https://drive.google.com/drive/u/0/folders/1n_Onxl3w5wSq2AxNvDZEQA6PrFFklTnx ✅cdn.indexbd.xyz
+"1GkPs8V74VOY9HfdKKEIYZXW_bLLSKXbq",  # https://drive.google.com/drive/u/0/folders/1GkPs8V74VOY9HfdKKEIYZXW_bLLSKXbq ✅cdn.indexbd.xyz
+"1FC-pveZBLJfiGHtBgbmv3ZzuAvTn2OJ6",  # https://drive.google.com/drive/u/0/folders/1FC-pveZBLJfiGHtBgbmv3ZzuAvTn2OJ6 ✅cdn.indexbd.xyz
+"1CSUIK4szNC2NUC5YUSwgupC6KkChPLgQ",  # https://drive.google.com/drive/u/0/folders/1CSUIK4szNC2NUC5YUSwgupC6KkChPLgQ ✅cdn.indexbd.xyz
+"1x5BVhSC8XX1Ucb0x5xpi4pcrEx0i82bU",  # https://drive.google.com/drive/u/0/folders/1x5BVhSC8XX1Ucb0x5xpi4pcrEx0i82bU ✅cdn.indexbd.xyz
+"1V-C4oeeT01lCrr0LbYBRi3XeV5d2wRPl",  # https://drive.google.com/drive/u/0/folders/1V-C4oeeT01lCrr0LbYBRi3XeV5d2wRPl ✅cdn.indexbd.xyz
+"1DccyyqCRW4yeLJDg9hDbQdR6sgGstICy",  #  ✅cdn.indexbd.xyz
+"1p40mlse-QgDCavY2RMROkydLI-K5iT8J",  # https://drive.google.com/drive/u/0/folders/1p40mlse-QgDCavY2RMROkydLI-K5iT8J ✅cdn.indexbd.xyz
+"1Xny9ZhwYWLQ-RqUg88Jt5rgYZ46C18ff",  # https://drive.google.com/drive/u/0/folders/1Xny9ZhwYWLQ-RqUg88Jt5rgYZ46C18ff ✅cdn.indexbd.xyz
+"1353xAw0G4dCoHX5FUYD8JBma752ORMrH",  # https://drive.google.com/drive/u/0/folders/1353xAw0G4dCoHX5FUYD8JBma752ORMrH ✅cdn.indexbd.xyz
+"0AKZ2teG0cYiyUk9PVA",  # https://drive.google.com/drive/u/0/folders/0AKZ2teG0cYiyUk9PVA ✅cdn.indexbd.xyz
+"0AF6GSe5szgopUk9PVA",  #  ✅cdn.indexbd.xyz
+"1Lg6wgYD1fcW0CIuxzeT2p9oaeSl-B1_G",  # https://drive.google.com/drive/u/0/folders/1Lg6wgYD1fcW0CIuxzeT2p9oaeSl-B1_G ✅cdn.indexbd.xyz
+"1-bVjEwoXmnG-C2bm1nQQZMtT4jO72aij",  # https://drive.google.com/drive/u/0/folders/1-bVjEwoXmnG-C2bm1nQQZMtT4jO72aij ✅cdn.indexbd.xyz
+"1VCPCYGRoYPUEO7lWHukcMgHSyLD3GaT5",  # https://drive.google.com/drive/u/0/folders/1VCPCYGRoYPUEO7lWHukcMgHSyLD3GaT5 ✅cdn.indexbd.xyz
+"1nFQmpnlAaqZdqRRjZ5iSzWTauZDS-guz",  # https://drive.google.com/drive/u/0/folders/1nFQmpnlAaqZdqRRjZ5iSzWTauZDS-guz ✅cdn.indexbd.xyz
+"0ACxIdvo1MF53Uk9PVA",  # https://drive.google.com/drive/u/0/folders/0ACxIdvo1MF53Uk9PVA ✅cdn.indexbd.xyz
+"1J9Bwqs4ZV6rID9S6l58IASOav3XX00LJ",  # https://drive.google.com/drive/u/0/folders/0ACxIdvo1MF53Uk9PVA ✅cdn.indexbd.xyz
+"16Q82Fh3N3Y4cpQLOHISLbjCGgHH9GILA", # cdn.indexbd.xyz
+"12N8I_revifkdD3k3ZS6NI7rrIw-CzGge", # cdn.indexbd.xyz
+"1rPfmeWKkEld93gWPskTz9pnvdd5kn1on", # cdn.indexbd.xyz
 ]
 
 INDEX_URL = [
@@ -362,4 +384,26 @@ INDEX_URL = [
 "https://s2.packsindex.workers.dev/0:/TombDoc%20Collection",
 "https://s2.packsindex.workers.dev/0:/TombDoc%20Collection/!Series",
 "http://search2.indexbd.cf/0:",
+"http://search2.indexbd.cf/36:",
+"https://cdn.indexbd.xyz/0:/Movies", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/0:/Movies/BOLLYWOOD", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/0:/Movies/HOLLYWOOD", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/0:/Movies/IMDB%20Top%20Listed", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/0:/Movies/PSA_Collectios/PSA%20Movies", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/0:/Movies/PSA_Collectios/PSA%20Series", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/0:/TV%20Series", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/1:/Korean%20Dramas/!%20Episode%20Wise", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/1:/Korean%20Dramas/!%20Zipped", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/1:/Korean%20Dramas/!%20Ongoing", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/2:", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/3:", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/3:/Chorki%20Web-DL-BDH", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/3:/Movie%20RSS%20720p/", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/3:/Movie%20RSS%201080p/", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/3:/TV%20Series%20RSS", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/4:", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/1:/Korean%20Movies", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/5:/Movies/BOLLYWOOD", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/5:/Movies/HOLLYWOOD", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/1:/Korean%20Dramas/AppleTor", # ✅cdn.indexbd.xyz
 ]
