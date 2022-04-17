@@ -263,6 +263,13 @@ DRIVE_ID = [
 "16Q82Fh3N3Y4cpQLOHISLbjCGgHH9GILA", # cdn.indexbd.xyz
 "12N8I_revifkdD3k3ZS6NI7rrIw-CzGge", # cdn.indexbd.xyz
 "1rPfmeWKkEld93gWPskTz9pnvdd5kn1on", # cdn.indexbd.xyz
+"13Fx95jo-1woeRPlf_iaBDF0-86wMndmP"
+"13A9QpO7G7LgIDzabAafjPd5uXmgMTB0d"
+"13FXPJqVXpPt0tOvozYV_CmXtghovu7qH"
+"16Q82Fh3N3Y4cpQLOHISLbjCGgHH9GILA"
+"12N8I_revifkdD3k3ZS6NI7rrIw-CzGge"
+"1MPUgrmNPRCoFkT1SwwzPYWJ_APngQMmr"
+"14styFYkfISZw5hwRPQmWeEPbIb53GFfo"
 ]
 
 INDEX_URL = [
@@ -406,4 +413,11 @@ INDEX_URL = [
 "https://cdn.indexbd.xyz/5:/Movies/BOLLYWOOD", # ✅cdn.indexbd.xyz
 "https://cdn.indexbd.xyz/5:/Movies/HOLLYWOOD", # ✅cdn.indexbd.xyz
 "https://cdn.indexbd.xyz/1:/Korean%20Dramas/AppleTor", # ✅cdn.indexbd.xyz
+"https://cdn.indexbd.xyz/4:/00.DC-Main-BDH-DIU"
+"https://cdn.indexbd.xyz/4:/DC-One-BDH-Uploads"
+"https://cdn.indexbd.xyz/4:/DC-Zero-BDH-Uploads"
+"https://cdn.indexbd.xyz/4:/00.DC-Main-BDH-DIU/Movies/BOLLYWOOD"
+"https://cdn.indexbd.xyz/4:/00.DC-Main-BDH-DIU/Movies/HOLLYWOOD"
+"https://cdn.indexbd.xyz/4:/00.DC-Main-BDH-DIU/Movies/IMDB%20Top%20Listed"
+"https://cdn.indexbd.xyz/4:/00.DC-Main-BDH-DIU/Tv%20Series"
 ]
