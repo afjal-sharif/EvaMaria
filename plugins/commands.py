@@ -233,7 +233,7 @@ async def help_command(_, message):
         reply_markup=reply_markup
     )
 #/search. /find, /s, /f - For searching files in gDrive
-@Client.on_message(filters.command(["search", "find", "f", "s", "list"]) & ~filters.edited & filters.chat(SUDO_CHATS_ID))
+@Client.on_message(filters.command(["searcho", "findo", "fo", "so", "listo"]) & ~filters.edited & filters.chat(SUDO_CHATS_ID))
 async def search(_, message):
     global i, m, data
     if len(message.command) < 2:
