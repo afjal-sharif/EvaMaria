@@ -1,6 +1,7 @@
 import os
 import logging
 import random
+import time
 from Script import script
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired, MessageEmpty, MessageNotModified
@@ -241,7 +242,10 @@ async def search(_, message):
       return
     query = message.text.split(' ',maxsplit=1)[1]
     m = await message.reply_text("**🔎 ফাইলটি খোঁজা হচ্ছে 🔎..অপেক্ষা করুন 🙏.. \n\n 💚@BangladeshHoarding💚**")
+    start = timer()
     data = drive.drive_list(query)
+    end = timer()
+    time_taken = round(end-start, 2)
     
     results = len(data)
     i = 0
