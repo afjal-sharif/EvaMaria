@@ -4,6 +4,7 @@ import json
 from requests.utils import quote
 from google.auth.transport.requests import Request
 from google_auth_oauthlib.flow import InstalledAppFlow
+from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from info import DRIVE_NAME, DRIVE_ID, INDEX_URL
@@ -50,7 +51,7 @@ class GoogleDriveHelper:
         credentials = None
         if os.path.exists(self.__G_DRIVE_TOKEN_FILE):
             with open(self.__G_DRIVE_TOKEN_FILE, 'rb') as f:
-                credentials = pickle.load(f)
+                credentials = Credentials.from_authorized_user_file(self.__G_DRIVE_TOKEN_FILE, self.__OAUTH_SCOPE)
         if credentials is None or not credentials.valid:
             if credentials and credentials.expired and credentials.refresh_token:
                 credentials.refresh(Request())
