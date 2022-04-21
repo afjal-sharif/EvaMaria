@@ -2,6 +2,7 @@ import os
 import logging
 import random
 import time
+from timeit import default_timer as timer
 from Script import script
 from pyrogram import Client, filters
 from pyrogram.errors.exceptions.bad_request_400 import ChatAdminRequired, MessageEmpty, MessageNotModified
