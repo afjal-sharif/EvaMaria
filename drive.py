@@ -14,10 +14,23 @@ SIZE_UNITS = ['B', 'KB', 'MB', 'GB', 'TB', 'PB']
 
 class GoogleDriveHelper:
     def __init__(self, name=None, listener=None):
-        self.__G_DRIVE_TOKEN_FILE = "token.pickle"
+        self.listener = listener
+        self.name = name
+        self.__G_DRIVE_TOKEN_FILE = "token.json"
+        # Check https://developers.google.com/drive/scopes for all available scopes
         self.__OAUTH_SCOPE = ['https://www.googleapis.com/auth/drive']
+        self.__G_DRIVE_DIR_MIME_TYPE = "application/vnd.google-apps.folder"
+        self.__G_DRIVE_BASE_DOWNLOAD_URL = "https://drive.google.com/uc?id={}&export=download"
+        self.__G_DRIVE_DIR_BASE_DOWNLOAD_URL = "https://drive.google.com/drive/folders/{}"
         self.__service = self.authorize()
+        self.batch_dict = {}
+        self.telegraph_content = []
         self.path = []
+        self.total_bytes = 0
+        self.total_files = 0
+        self.total_folders = 0
+        self.transferred_size = 0
+        self.alt_auth = False
 
     def get_readable_file_size(self, size_in_bytes) -> str:
         if size_in_bytes is None:
@@ -57,11 +70,13 @@ class GoogleDriveHelper:
         query = f"'{parent_id}' in parents and ({gquery})"
         response = self.__service.files().list(supportsTeamDrives=True,
                                                includeTeamDriveItems=True,
+                                               teamDriveId=parent_id,
                                                q=query,
                                                spaces='drive',
-                                               pageSize=200,
-                                               fields='files(id, name, mimeType, size)',
-                                               orderBy='modifiedTime desc').execute()["files"]
+                                               corpora='drive',
+                                               pageSize=1000,
+                                               fields='files(id, name, mimeType, size, teamDriveId, parents)',
+                                               orderBy='folder, modifiedTime desc').execute()["files"]
         return response
 
     def drive_list(self, fileName):
@@ -74,7 +89,7 @@ class GoogleDriveHelper:
             for file in response:
                 if file['mimeType'] == "application/vnd.google-apps.folder":
                     url_path = quote(f"{file['name']}")
-                    url = f'{INDEX_URL[INDEX]}/{url_path}/'
+                    url = f'{INDEX_URL[INDEX]}search?q={url_path}'
                     data.append(
                             {
                                 "type": "folder",
@@ -87,7 +102,7 @@ class GoogleDriveHelper:
                 else:
                     size = self.get_readable_file_size(file.get('size'))
                     url_path = quote(f'{file.get("name")}')
-                    url = f'{INDEX_URL[INDEX]}/{url_path}'
+                    url = f'{INDEX_URL[INDEX]}search?q={url_path}'
                     data.append(
                         {
                             "type": "file",
