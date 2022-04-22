@@ -90,7 +90,7 @@ class GoogleDriveHelper:
             for file in response:
                 if file['mimeType'] == "application/vnd.google-apps.folder":
                     url_path = quote(f"{file['name']}")
-                    url = f'{INDEX_URL[INDEX]}search?q={url_path}'
+                    url = f'{INDEX_URL[INDEX]}/{url_path}/'
                     data.append(
                             {
                                 "type": "folder",
@@ -103,7 +103,7 @@ class GoogleDriveHelper:
                 else:
                     size = self.get_readable_file_size(file.get('size'))
                     url_path = quote(f'{file.get("name")}')
-                    url = f'{INDEX_URL[INDEX]}search?q={url_path}'
+                    url = f'{INDEX_URL[INDEX]}/{url_path}'
                     data.append(
                         {
                             "type": "file",
